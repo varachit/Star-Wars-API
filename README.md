@@ -64,6 +64,17 @@ PS. Since this is private repository, I decided to displayed all the credentials
 | Get all planets 	| GET 	| /api/v1/planet/ 	| None 	|
 | Get a planet 	| GET 	| /api/v1/planet/{id} 	| None 	|
 | Search for planet 	| GET 	| /api/v1/planet/search 	| Parameter: name<br>Example: /api/v1/planet/search?name=Kashyyyk 	|
-| Add a planet 	| POST 	| /api/v1/planet/ 	| Starship Object: JSON Header 	|
-| Update a planet 	| PUT 	| /api/v1/planet/{id}/update 	| Starship Object: JSON Header 	|
+| Add a planet 	| POST 	| /api/v1/planet/ 	| Planet Object: JSON Header 	|
+| Update a planet 	| PUT 	| /api/v1/planet/{id}/update 	| Planet Object: JSON Header 	|
 | Delete a planet 	| DELETE 	| /api/v1/planet/{id}/delete 	| None 	|
+
+### Person
+| Action 	| Method 	| Endpoint 	| Description 	|
+|:---:	|:---:	|:---:	|:---:	|
+| Get all persons 	| GET 	| /api/v1/person/ 	| None 	|
+| Get a person 	| GET 	| /api/v1/person/{id} 	| None 	|
+| Search for person 	| GET 	| /api/v1/person/search 	| Parameter: name<br>Example: /api/v1/person/search?name=Luke 	|
+| Add a person 	| POST 	| /api/v1/person/ 	| Person Object: JSON Header 	|
+| Update a person 	| PUT 	| /api/v1/person/{id}/update 	| Person Object: JSON Header 	|
+| Delete a person 	| DELETE 	| /api/v1/person/{id}/delete 	| None 	|
+| Get access token 	| POST 	| /api/v1/auth/ 	| Parameters: Username, Password 	|
