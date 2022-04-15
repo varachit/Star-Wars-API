@@ -9,6 +9,7 @@ Star Wars REST API, serves people, planet and starship within its universe. Base
 ### Installation
 - Using Local Environment
   The required packages must be installed on the local environment,
+  
   Consult requirements.txt or simply execute the following command:
   
   `pip install -r requirements.txt`
