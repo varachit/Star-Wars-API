@@ -22,6 +22,16 @@ Star Wars REST API, serves people, planet and starship within its universe. Base
 - Start the project
   `python backend/manage.py runserver 8000`
 
+## Authorization
+### Admin:
+    ```
+    admin
+    #WvpLPf9yHzW
+
+    proftom
+    kRytPFs_3a4c
+    ```
+
 
 ## Endpoints
 ### General
