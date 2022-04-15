@@ -7,6 +7,9 @@ Based on Python 3.10.1 with Maven project management, the application built with
 
 ## Technology
 ### Installation
+- Using Local Environment
+  The required packages must be installed on the local environment, read requirements.txt or execute:
+  `pip install -r requirements.txt`
 - Using Project's Python Virtual Environment
   #### Windows:
   `.\venv\Scripts\activate.bat`
