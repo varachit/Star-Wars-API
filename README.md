@@ -7,12 +7,15 @@ Based on Python 3.10.1 with Maven project management, the application built with
 
 ## Technology
 ### Installation
-- Through Python Virtual Environment
+- Using Project's Python Virtual Environment
   #### Windows:
   `.\venv\Scripts\activate.bat`
 
   #### Linux/Mac:
   `source venv\bin\activate`
+  
+- Start the project
+  `python backend/manage.py runserver 8000`
 
 
 ## Endpoints
