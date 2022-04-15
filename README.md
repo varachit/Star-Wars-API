@@ -24,7 +24,8 @@ Star Wars REST API, serves people, planet and starship within its universe. Base
   `python backend/manage.py runserver 8000`
   
 - Access Django Administration or Management Panel
-  Path: `/admin/`
+
+  Path: `127.0.0.1:8000/admin/`
 
 ## Authorization
 ### Django Administration
