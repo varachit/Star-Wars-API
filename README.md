@@ -8,12 +8,11 @@ Based on Python 3.10.1 with Maven project management, the application built with
 ## Technology
 ### Installation
 - Through Python Virtual Environment
-#### To Activate:
-#### Windows:
-`.\venv\Scripts\activate.bat`
+  #### Windows:
+  `.\venv\Scripts\activate.bat`
 
-#### Linux/Mac:
-`source venv\bin\activate`
+  #### Linux/Mac:
+  `source venv\bin\activate`
 
 
 ## Endpoints
