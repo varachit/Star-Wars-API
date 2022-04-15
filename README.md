@@ -6,7 +6,8 @@ Greeting Mr. Morrison, I'm Varachit Wirunpat. This is my first REST API Django P
 
 ## Technology
 ### Backend
-- Django
+- Python 3.10.1
+- Django 4.0.3
 
 ## Technology
 ### Installation
