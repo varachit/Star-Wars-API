@@ -20,18 +20,24 @@ Star Wars REST API, serves people, planet and starship within its universe. Base
   `source venv\bin\activate`
   
 - Start the project
+
   `python backend/manage.py runserver 8000`
+  
+- Access Django Administration or Management Panel
+  Path: `/admin/`
 
 ## Authorization
-### Admin:
-    ```
-    admin
-    #WvpLPf9yHzW
+### Django Administration
 
-    proftom
-    kRytPFs_3a4c
-    ```
+Username: admin
+Password: #WvpLPf9yHzW
 
+Username: proftom
+Password: kRytPFs_3a4c
+
+Pre-generated Token: `Bearer f095d51254e63e88ab67f730df190bae45e8d549`
+
+PS. Since this is private repository, I decided to displayed all the credentials information on this file.
 
 ## Endpoints
 ### General
