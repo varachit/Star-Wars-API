@@ -45,7 +45,7 @@ Pre-generated Token: `Bearer f095d51254e63e88ab67f730df190bae45e8d549`
 
 To generate authentication token, please visit the endpoint within the general category.
 
-PS. Since this is private repository, I decided to displayed all the credentials information on this file.
+PS. Since this is private repository, I decided to displayed all the credentials information here.
 
 ## Endpoints
 ### General
