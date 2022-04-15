@@ -77,4 +77,3 @@ PS. Since this is private repository, I decided to displayed all the credentials
 | Add a person 	| POST 	| /api/v1/person/ 	| Person Object: JSON Header 	|
 | Update a person 	| PUT 	| /api/v1/person/{id}/update 	| Person Object: JSON Header 	|
 | Delete a person 	| DELETE 	| /api/v1/person/{id}/delete 	| None 	|
-| Get access token 	| POST 	| /api/v1/auth/ 	| Parameters: Username, Password 	|
