@@ -9,23 +9,22 @@ Greeting Mr. Morrison, I'm Varachit Wirunpat. This is my first REST API Django P
 - Python 3.10.1
 - Django 4.0.3
 
-## Technology
-### Installation
-- Using Local Environment
+## Installation
+### - Using Local Environment
   
   The required packages must be installed on the local environment,
   
   Consult requirements.txt or simply execute the following command:
   
   `pip install -r requirements.txt`
-- Using Project's Python Virtual Environment
+### - Using Project's Python Virtual Environment
   #### Windows:
   `.\venv\Scripts\activate.bat`
 
   #### Linux/Mac:
   `source venv\bin\activate`
   
-- Start the project
+### - Start the project
 
   `python backend/manage.py runserver 8000`
   
