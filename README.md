@@ -48,6 +48,9 @@ To generate authentication token, please visit the endpoint within the general c
 
 PS. Since this is private repository, I decided to displayed all the credentials information here.
 
+## Permission
+Authenticated or Administrator User will have permission to read, create, update, delete. Otherwise Unauthenticated only have Read-Only permission.
+
 ## Endpoints
 ### General
 | Action 	| Method 	| Endpoint 	| Description 	|
