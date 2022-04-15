@@ -11,6 +11,7 @@ Greeting Mr. Morrison, I'm Varachit Wirunpat. This is my first REST API Django P
 ## Technology
 ### Installation
 - Using Local Environment
+  
   The required packages must be installed on the local environment,
   
   Consult requirements.txt or simply execute the following command:
