@@ -9,6 +9,9 @@ Greeting Mr. Morrison, I'm Varachit Wirunpat. This is my first REST API Django P
 - Python 3.10.1
 - Django 4.0.3
 
+## Design
+![alt text](https://i.imgur.com/kV39g6j.png)
+
 ## Installation
 #### - Using Local Environment
   
