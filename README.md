@@ -5,6 +5,17 @@ Based on Python 3.10.1 with Maven project management, the application built with
 ### Backend
 - Django
 
+## Technology
+### Installation
+- Optional
+Python Virtual Environment
+To Activate:
+Windows:
+`.\venv\Scripts\activate.bat`
+
+Linux/Mac
+`source venv\bin\activate`
+
 
 ## Endpoints
 ### Starships
