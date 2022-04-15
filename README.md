@@ -1,5 +1,5 @@
 # Star Wars API
-Based on Python 3.10.1 with Maven project management, the application built with in-memory database H2, or an embedded relation database management system that runs along with the program. 
+Star Wars REST API, serves people, planet and starship within its universe. Based on Django 4.0.3, Python 3.10.1, the application utilised SQLite, a lightweight disk-based database run along with the application.
 
 ## Technology
 ### Backend
