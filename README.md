@@ -31,11 +31,11 @@ Star Wars REST API, serves people, planet and starship within its universe. Base
 ## Authorization
 ### Django Administration
 
-Username: admin
-Password: #WvpLPf9yHzW
+Username: `admin`
+Password: `#WvpLPf9yHzW`
 
-Username: proftom
-Password: kRytPFs_3a4c
+Username: `proftom` 
+Password: `kRytPFs_3a4c`
 
 Pre-generated Token: `Bearer f095d51254e63e88ab67f730df190bae45e8d549`
 
