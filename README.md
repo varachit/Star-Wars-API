@@ -21,53 +21,86 @@ Greeting Mr. Morrison, I'm Varachit Wirunpat. This is my first REST API Django P
 ![alt text](https://i.imgur.com/iXEgG7y.png)
 
 ## Installation
-### __Frontend__
-#### - Start React Frontend
-  `npm start`
+### **Frontend**
+- Install dependencies
+  ```
+  cd frontend
+  npm install
+  ```
 
-#### - Access Frontend Webpage
-  Path: `http://127.0.0.1:3000`
+- Start Development React Frontend
+  ```
+    npm start
+  ```
 
-### __Backend__
-#### - Using Local Environment
+
+- Production Build
+  ```
+    npm run build
+    npm install -g serve
+    serve -s build
+  ```
+
+### **Backend**
+- Using Local Environment\
+  The required packages must be installed on the local environment to run this project,
+  If you wish to review the dependencies manually please check requirements.txt. Otherwise,
+  simply execute the following command:
+  ```
+  pip install -r requirements.txt
+  ```
+
+- Using Project's Python Virtual Environment
+
+  - Windows:
+  ```
+  .\venv\Scripts\activate.bat
+  ```
   
-  The required packages must be installed on the local environment to run this project, Please consult requirements.txt or simply execute the following command:
-  
-  `pip install -r requirements.txt`
-### - Using Project's Python Virtual Environment
-  #### Windows:
-  `.\venv\Scripts\activate.bat`
-
-  #### Linux/Mac:
-  `source venv\bin\activate`
+  - Linux/Mac:
+  ```
+  source venv\bin\activate
+  ```
   
 ### - Start the project
-
-  `python manage.py runserver 8000`
-  
+  ```
+  cd backend
+  python manage.py runserver 8000
+  cd ..
+  cd frontend
+  npm start
+  ```
+    
 - Access Django Administration or Management Panel
 
   Path: `http://127.0.0.1:8000/admin/`
 
+
+- Access React Frontend\
+  Path: `http://127.0.0.1:3000/`
+
 ## Authorization
-### Django Administration
+- Django Administration
+  ```
+  Username: `admin`
+  Password: `#WvpLPf9yHzW`
+  ```
+  ```
+  Username: `proftom` 
+  Password: `kRytPFs_3a4c`
+  ```
 
-Username: `admin`
-Password: `#WvpLPf9yHzW`
-
-Username: `proftom` 
-Password: `kRytPFs_3a4c`
-
-Pre-generated Token: `Bearer f095d51254e63e88ab67f730df190bae45e8d549`
+- Authorization Token
+  - Pre-generated
+`Bearer f095d51254e63e88ab67f730df190bae45e8d549`
 
 To generate authentication token, please visit the endpoint within the general category.
 
-PS. Since this is private repository, I decided to displayed all the credentials information here.
+PS. Since this is private repository, I decided to displayed all the credentials' information here.
 
 ## Permission
-Authenticated or Administrator User will have permission to read, create, update, delete.
-
-Otherwise Unauthenticated have Read-Only permission.
+Authenticated User and Administrator User have rights to read, create, update, delete.\
+Read-only permission is allowed for the Unauthenticated User.
 
 ## Endpoints
 ### General
