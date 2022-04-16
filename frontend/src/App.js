@@ -112,7 +112,7 @@ function searchStarship(event) {
                 <Navbar.Collapse id="basic-navbar-nav" >
                     <Nav className="me-auto">
                         <Nav.Link href="/">Home</Nav.Link>
-                        <Nav.Link href="https://github.com/z3r0k0r3/Star-Wars-API/">Documentation</Nav.Link>
+                        <Nav.Link href="https://github.com/z3r0k0r3/Star-Wars-API/" target="_blank">Documentation</Nav.Link>
                         <Nav.Link href="http://127.0.0.1:8000/admin">Django Administration</Nav.Link>
                     </Nav>
                 </Navbar.Collapse>
@@ -199,7 +199,7 @@ function searchStarship(event) {
                       <div>
                         <Table striped bordered hover>
                             <thead>
-                                <tr>
+                                <tr style={{ textAlign: "center", verticalAlign: "middle"}}>
                                     <th>Name</th>
                                     <th>Gender</th>
                                     <th>Mass</th>
@@ -210,7 +210,7 @@ function searchStarship(event) {
                             </thead>
                             <tbody>
                                 {personData.results.map((value, index) =>
-                                <tr key={index} className="flex-fill">
+                                <tr key={index} className="flex-fill" style={{ textAlign: "center", verticalAlign: "middle" }}>
                                     <td>{value.name}</td>
                                     <td>{value.gender}</td>
                                     <td>{value.mass}</td>
@@ -261,7 +261,7 @@ function searchStarship(event) {
                       <div>
                         <Table striped bordered hover>
                             <thead>
-                                <tr>
+                                <tr style={{ textAlign: "center", verticalAlign: "middle"}}>
                                     <th>Name</th>
                                     <th>Population</th>
                                     <th>Climate</th>
@@ -275,7 +275,7 @@ function searchStarship(event) {
                             </thead>
                             <tbody>
                                 {planetData.results.map((value, index) =>
-                                <tr key={index} className="flex-fill">
+                                <tr key={index} className="flex-fill" style={{ textAlign: "center", verticalAlign: "middle" }}>
                                     <td>{value.name}</td>
                                     <td>{value.population}</td>
                                     <td>{value.climate}</td>
@@ -329,7 +329,7 @@ function searchStarship(event) {
                       <div>
                         <Table striped bordered hover>
                             <thead>
-                                <tr>
+                                <tr style={{ textAlign: "center", verticalAlign: "middle"}}>
                                     <th>Name</th>
                                     <th>Model</th>
                                     <th>Class</th>
@@ -343,7 +343,7 @@ function searchStarship(event) {
                             </thead>
                             <tbody>
                                 {starshipData.results.map((value, index) =>
-                                <tr key={index} className="flex-fill">
+                                <tr key={index} className="flex-fill" style={{ textAlign: "center", verticalAlign: "middle" }}>
                                     <td>{value.name}</td>
                                     <td>{value.model}</td>
                                     <td>{value.starship_class}</td>
