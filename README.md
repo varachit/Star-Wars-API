@@ -17,14 +17,14 @@ Greeting Mr. Morrison, I'm Varachit Wirunpat. This is my first REST API Django P
 ![alt text](https://i.imgur.com/kV39g6j.png)
 
 ## Installation
-### - Frontend
+### __Frontend__
 #### Start React Frontend
   `npm start`
 
 #### Access Frontend Webpage
   `http://127.0.0.1:3000`
 
-### - Backend
+### __Backend__
 #### - Using Local Environment
   
   The required packages must be installed on the local environment to run this project, Please consult requirements.txt or simply execute the following command:
