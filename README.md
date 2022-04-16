@@ -18,10 +18,10 @@ Greeting Mr. Morrison, I'm Varachit Wirunpat. This is my first REST API Django P
 
 ## Installation
 ### __Frontend__
-#### Start React Frontend
+#### - Start React Frontend
   `npm start`
 
-#### Access Frontend Webpage
+#### - Access Frontend Webpage
   `http://127.0.0.1:3000`
 
 ### __Backend__
