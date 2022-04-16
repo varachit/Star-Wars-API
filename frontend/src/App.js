@@ -7,6 +7,7 @@ import { Alert, Badge, Button, Card, Col, Container,
 
 import './App.css';
 
+import Deathstar from './assets/svg/deathstar.svg';
 import Starship from './assets/svg/starship.svg';
 import Planet from './assets/svg/planet.svg';
 import Person from './assets/svg/person.svg';
@@ -174,8 +175,6 @@ function searchStarship(event) {
                             </Row>
                         </Col>
                     </Row>
-
-
                 </Container>
 
 
@@ -190,6 +189,10 @@ function searchStarship(event) {
             <Container style={{ padding: 20, marginTop: 20 }}>
               <Row>
                   <div>
+                      <div className="col-sm-12 text-center">
+                        <img src={Deathstar} style={{ height: 175, width: 175, display: "inline-block" }} alt=""/>
+                      </div>
+                      <br />
                       <h4 className="position-relative" style={{ textAlign: 'center' }}>
                           Most Piloted Starship Searcher <Badge bg="dark">New</Badge>{' '}
                       </h4>
@@ -234,9 +237,11 @@ function searchStarship(event) {
                       {/*)}*/}
                   </>
                   : <>
-                      <Alert variant="danger" onClose={() => setShowMostPilotedResults(false)} dismissible>
-                          No starship found!
-                      </Alert>
+                      <div>
+                          <Alert variant="danger" onClose={() => setShowMostPilotedResults(false)} dismissible>
+                              No starship found!
+                          </Alert>
+                      </div>
                     </>
                }
                </Container>
