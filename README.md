@@ -4,6 +4,8 @@ Star Wars REST API, serves people, planet and starship information within its un
 ## Note
 Greeting Mr. Morrison, I'm Varachit Wirunpat. This is my first REST API Django Project. The reason for choosing Django is because I would like to try something new and challenging as to adapt the existing knowledge with the new framework. Thank you for visiting and have a great day!
 
+The production is currently work-in-progress, additional .env is required to manage domain and relevant configuration.
+
 ## Technology
 ### Frontend
 - React 18.0.0
