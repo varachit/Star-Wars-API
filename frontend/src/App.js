@@ -17,6 +17,10 @@ function App() {
   const [showPlanetResults, setShowPlanetResults] = useState(false);
   const [planetData, setPlanetData] = useState({});
 
+  const [starshipSearchText, setStarshipSearchText] = useState("");
+  const [showStarshipResults, setShowStarshipResults] = useState(false);
+  const [starshipData, setStarshipData] = useState({});
+
   useEffect(() => {
       document.title = "Star Wars";
   }, [])
@@ -59,7 +63,19 @@ function App() {
    }).catch(function (error) {
        console.log(error)
    });
-   console.log(planetData)
+  }
+
+function searchStarship(event) {
+   setShowStarshipResults(true)
+   if(starshipSearchText === "") {
+       return;
+   }
+   const endpoint = "http://127.0.0.1:8000/api/v1/starship/search?name=" + starshipSearchText;
+   axios.get(endpoint).then(function (response) {
+   setStarshipData(response.data);
+   }).catch(function (error) {
+       console.log(error)
+   });
   }
 
   function mostPilotedResetForm() {
@@ -80,6 +96,12 @@ function App() {
       setPlanetData({})
   }
 
+  function starshipResetForm() {
+      setStarshipSearchText('')
+      setShowStarshipResults(false)
+      setStarshipData({})
+  }
+
 
   return (
       <div>
@@ -90,6 +112,7 @@ function App() {
                 <Navbar.Collapse id="basic-navbar-nav" >
                     <Nav className="me-auto">
                         <Nav.Link href="/">Home</Nav.Link>
+                        <Nav.Link href="https://github.com/z3r0k0r3/Star-Wars-API/">Documentation</Nav.Link>
                         <Nav.Link href="http://127.0.0.1:8000/admin">Django Administration</Nav.Link>
                     </Nav>
                 </Navbar.Collapse>
@@ -101,7 +124,7 @@ function App() {
                   <h4 style={{ textAlign: 'center' }}>Most Piloted Starship Searcher</h4>
                   <h6 className="text-muted" style={{ textAlign: 'center' }}>Locates the most piloted starship across
                       all of the residents from target planets.</h6>
-                  <Form.Group className="mb-3" id="search-most-piloted-form">
+                  <Form.Group className="mb-3">
                       <Form.Label>Planets</Form.Label>
                       <Form.Control type="text" placeholder="Sullust, Corellia, Kashyyyk"
                                     value={mostPilotedSearchText}
@@ -153,8 +176,8 @@ function App() {
             {/* PERSON */}
             <Container style={{ padding: 20, marginTop: 20 }}>
               <Row>
-                  <h4 style={{ textAlign: 'center' }}>Person Searcher</h4>
-                  <Form.Group className="mb-3" id="search-most-piloted-form">
+                  <h4 style={{ textAlign: 'left' }}>Person Searcher</h4>
+                  <Form.Group className="mb-3">
                       <Form.Label>Person</Form.Label>
                       <Form.Control type="text" placeholder="Luke Skywalker"
                                      value={personSearchText}
@@ -215,8 +238,8 @@ function App() {
             {/* PLANET */}
             <Container style={{ padding: 20, marginTop: 20 }}>
               <Row>
-                  <h4 style={{ textAlign: 'center' }}>Planet Searcher</h4>
-                  <Form.Group className="mb-3" id="search-most-piloted-form">
+                  <h4 style={{ textAlign: 'left' }}>Planet Searcher</h4>
+                  <Form.Group className="mb-3">
                       <Form.Label>Planet</Form.Label>
                       <Form.Control type="text" placeholder="Tatooine"
                                      value={planetSearchText}
@@ -272,6 +295,74 @@ function App() {
                       <div>
                           <Alert variant="danger" onClose={() => setShowPlanetResults(false)} dismissible>
                               <Alert.Heading>No planet found!</Alert.Heading>
+                          </Alert>
+                      </div>
+                    </>
+               }
+               </Container>
+            </Container>
+
+
+          {/* STARSHIP */}
+            <Container style={{ padding: 20, marginTop: 20 }}>
+              <Row>
+                  <h4 style={{ textAlign: 'left' }}>Starship Searcher</h4>
+                  <Form.Group className="mb-3">
+                      <Form.Label>Starship</Form.Label>
+                      <Form.Control type="text" placeholder="Millennium Falcon"
+                                     value={starshipSearchText}
+                                     onChange={e => setStarshipSearchText(e.target.value)}
+                      />
+                      <Form.Text className="text-muted">Search allowed to search individually</Form.Text>
+                      <br />
+                      <br />
+                      <Button variant="primary" onClick={e => searchStarship(e)}>Search</Button>{' '}
+                      <Button variant="danger" onClick={starshipResetForm}>Reset</Button>{' '}
+                      <Button variant="success" href="http://127.0.0.1:8000/api/v1/starship/" target="_blank">Starship List</Button>
+                      <br />
+                  </Form.Group>
+              </Row>
+              <Container className="container" style={{ display: showStarshipResults ? "block" : "none" }}>
+                {
+                  starshipData.count > 0 ?
+                  <>
+                      <div>
+                        <Table striped bordered hover>
+                            <thead>
+                                <tr>
+                                    <th>Name</th>
+                                    <th>Model</th>
+                                    <th>Class</th>
+                                    <th>Manufacturer</th>
+                                    <th>Atmosphering Speed</th>
+                                    <th>Hyperdrive Rating</th>
+                                    <th>Cargo Capacity</th>
+                                    <th>Length</th>
+                                    <th>More Information</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {starshipData.results.map((value, index) =>
+                                <tr key={index} className="flex-fill">
+                                    <td>{value.name}</td>
+                                    <td>{value.model}</td>
+                                    <td>{value.starship_class}</td>
+                                    <td>{value.manufacturer}</td>
+                                    <td>{value.max_atmosphering_speed}</td>
+                                    <td>{value.hyperdrive_rating}</td>
+                                    <td>{value.cargo_capacity}</td>
+                                    <td>{value.length}</td>
+                                    <td><Button variant="secondary" href={value.url} target="_blank">More Information</Button></td>
+                                </tr>
+                                )}
+                            </tbody>
+                            </Table>
+                      </div>
+                  </>
+                  : <>
+                      <div>
+                          <Alert variant="danger" onClose={() => setShowStarshipResults(false)} dismissible>
+                              <Alert.Heading>No starship found!</Alert.Heading>
                           </Alert>
                       </div>
                     </>
