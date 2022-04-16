@@ -1,8 +1,8 @@
 # Star Wars API
-Star Wars REST API, serves people, planet and starship within its universe. Based on Django 4.0.3, Python 3.10.1, the application utilised SQLite, a lightweight disk-based database run along with the application.
+Star Wars REST API, serves people, planet and starship information within its universe. Based on Django 4.0.3, Python 3.10.1, the application utilised SQLite, a lightweight disk-based database run along with the back-end application.
 
 ## Note
-Greeting Mr. Morrison, I'm Varachit Wirunpat. This is my first REST API Django Project. The reason for choosing Django is because I would like to try somoething new and challenge myself to adapt the existing knowledge with the new framework. Thank you for visiting and have a great day!
+Greeting Mr. Morrison, I'm Varachit Wirunpat. This is my first REST API Django Project. The reason for choosing Django is because I would like to try something new and challenging as to adapt the existing knowledge with the new framework. Thank you for visiting and have a great day!
 
 ## Technology
 ### Frontend
