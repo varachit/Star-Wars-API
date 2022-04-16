@@ -27,7 +27,7 @@ Greeting Mr. Morrison, I'm Varachit Wirunpat. This is my first REST API Django P
   
 ### - Start the project
 
-  `python backend/manage.py runserver 8000`
+  `python manage.py runserver 8000`
   
 - Access Django Administration or Management Panel
 
