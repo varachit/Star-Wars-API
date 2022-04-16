@@ -17,7 +17,7 @@ class StarshipHyperlinkSerializer(serializers.ModelSerializer):
 
 
 class PersonHyperlinkSerializer(serializers.ModelSerializer):
-    url = serializers.HyperlinkedIdentityField(view_name='starship-detail', lookup_field='pk')
+    url = serializers.HyperlinkedIdentityField(view_name='person-detail', lookup_field='pk')
 
     class Meta:
         model = Person
@@ -27,7 +27,7 @@ class PersonHyperlinkSerializer(serializers.ModelSerializer):
 
 
 class PlanetHyperlinkSerializer(serializers.ModelSerializer):
-    url = serializers.HyperlinkedIdentityField(view_name='starship-detail', lookup_field='pk')
+    url = serializers.HyperlinkedIdentityField(view_name='planet-detail', lookup_field='pk')
 
     class Meta:
         model = Planet
