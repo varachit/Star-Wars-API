@@ -71,8 +71,7 @@ Greeting Mr. Morrison, I'm Varachit Wirunpat. This is my first REST API Django P
   npm start
   ```
     
-- Access Django Administration or Management Panel
-
+- Access Django Administration or Management Panel\
   Path: `http://127.0.0.1:8000/admin/`
 
 
