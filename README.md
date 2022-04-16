@@ -51,7 +51,7 @@ PS. Since this is private repository, I decided to displayed all the credentials
 ## Permission
 Authenticated or Administrator User will have permission to read, create, update, delete.
 
-Otherwise Unauthenticated only have Read-Only permission.
+Otherwise Unauthenticated have Read-Only permission.
 
 ## Endpoints
 ### General
