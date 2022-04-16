@@ -13,8 +13,12 @@ Greeting Mr. Morrison, I'm Varachit Wirunpat. This is my first REST API Django P
 - Python 3.10.1
 - Django 4.0.3
 
+## Screenshot
+### React Frontend
+![alt text](https://raw.githubusercontent.com/z3r0k0r3/Star-Wars-API/master/image/Star-Wars_Frontend_Screenshot.png?token=GHSAT0AAAAAABP3OR2RLSEAD5GYEQAXPJQYYS3B42Q)
+
 ## Design
-![alt text](https://i.imgur.com/kV39g6j.png)
+![alt text](https://raw.githubusercontent.com/z3r0k0r3/Star-Wars-API/master/image/Star-Wars_Backend_Model_Diagram.png?token=GHSAT0AAAAAABP3OR2RIYQO5V5IEM3E2EJYYS3B4XQ)
 
 ## Installation
 ### __Frontend__
