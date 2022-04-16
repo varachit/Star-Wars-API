@@ -2,9 +2,15 @@ import React, {useEffect, useState} from 'react';
 import axios from "axios";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { Alert, Badge, Button, Card, Col, Container,
+    Form, Modal, Nav, Navbar, Row, Table } from 'react-bootstrap'
 
 import './App.css';
-import { Alert, Badge, Button, Card, Col, Container, Form, Modal, Nav, Navbar, Row, Table } from 'react-bootstrap'
+
+import Starship from './assets/svg/starship.svg';
+import Planet from './assets/svg/planet.svg';
+import Person from './assets/svg/person.svg';
+
 
 function App() {
   const [mostPilotedSearchText, setMostPilotedSearchText] = useState("");
@@ -27,6 +33,7 @@ function App() {
   const handleClose = () => setModalShow(false);
   const handleShow = () => setModalShow(true);
 
+
   useEffect(() => {
       document.title = "Star Wars";
       const fontAwesomeScript = document.createElement("script")
@@ -48,7 +55,7 @@ function App() {
     }).catch(function (error) {
        console.log(error)
     });
-    setShowMostPilotedResults(true)
+    setShowMostPilotedResults(true);
   }
 
   function searchPerson(event) {
@@ -114,7 +121,6 @@ function searchStarship(event) {
       setShowStarshipResults(false)
       setStarshipData({})
   }
-
 
   return (
       <div>
@@ -228,11 +234,9 @@ function searchStarship(event) {
                       {/*)}*/}
                   </>
                   : <>
-                      <div>
-                          <Alert variant="danger" onClose={() => setShowMostPilotedResults(false)} dismissible>
-                              <Alert.Heading>No starship found!</Alert.Heading>
-                          </Alert>
-                      </div>
+                      <Alert variant="danger" onClose={() => setShowMostPilotedResults(false)} dismissible>
+                          No starship found!
+                      </Alert>
                     </>
                }
                </Container>
@@ -242,9 +246,11 @@ function searchStarship(event) {
             {/* PERSON */}
             <Container style={{ padding: 20, marginTop: 20 }}>
               <Row>
-                  <h4 style={{ textAlign: 'left' }}>Person Searcher</h4>
+                  <h4 style={{ textAlign: 'left' }}>
+                      <img src={Person} style={{ height: 25, width: 25 }} alt=""/> Person Searcher
+                  </h4>
                   <Form.Group className="mb-3">
-                      <Form.Label>Person</Form.Label>
+                      <Form.Label>Person Name</Form.Label>
                       <Form.Control type="text" placeholder="Luke Skywalker"
                                      value={personSearchText}
                                      onChange={e => setPersonSearchText(e.target.value)}
@@ -292,7 +298,7 @@ function searchStarship(event) {
                   : <>
                       <div>
                           <Alert variant="danger" onClose={() => setShowPersonResults(false)} dismissible>
-                              <Alert.Heading>No person found!</Alert.Heading>
+                              No person found!
                           </Alert>
                       </div>
                     </>
@@ -304,9 +310,11 @@ function searchStarship(event) {
             {/* PLANET */}
             <Container style={{ padding: 20, marginTop: 20 }}>
               <Row>
-                  <h4 style={{ textAlign: 'left' }}>Planet Searcher</h4>
+                  <h4 style={{ textAlign: 'left' }}>
+                      <img src={Planet} style={{ height: 25, width: 25 }} alt=""/> Planet Searcher
+                  </h4>
                   <Form.Group className="mb-3">
-                      <Form.Label>Planet</Form.Label>
+                      <Form.Label>Planet Name</Form.Label>
                       <Form.Control type="text" placeholder="Tatooine"
                                      value={planetSearchText}
                                      onChange={e => setPlanetSearchText(e.target.value)}
@@ -360,7 +368,7 @@ function searchStarship(event) {
                   : <>
                       <div>
                           <Alert variant="danger" onClose={() => setShowPlanetResults(false)} dismissible>
-                              <Alert.Heading>No planet found!</Alert.Heading>
+                              No planet found!
                           </Alert>
                       </div>
                     </>
@@ -372,9 +380,11 @@ function searchStarship(event) {
           {/* STARSHIP */}
             <Container style={{ padding: 20, marginTop: 20 }}>
               <Row>
-                  <h4 style={{ textAlign: 'left' }}>Starship Searcher</h4>
+                  <h4 style={{ textAlign: 'left' }}>
+                    <img src={Starship} style={{ height: 30, width: 30 }} alt=""/> Starship Searcher
+                  </h4>
                   <Form.Group className="mb-3">
-                      <Form.Label>Starship</Form.Label>
+                      <Form.Label>Starship Name</Form.Label>
                       <Form.Control type="text" placeholder="Millennium Falcon"
                                      value={starshipSearchText}
                                      onChange={e => setStarshipSearchText(e.target.value)}
@@ -428,7 +438,7 @@ function searchStarship(event) {
                   : <>
                       <div>
                           <Alert variant="danger" onClose={() => setShowStarshipResults(false)} dismissible>
-                              <Alert.Heading>No starship found!</Alert.Heading>
+                              No starship found!
                           </Alert>
                       </div>
                     </>
