@@ -20,7 +20,7 @@ class MostPilotedStarshipListView(generics.ListAPIView):
     permission_classes = [permissions.IsAuthenticatedOrReadOnly]
 
     def get_queryset(self):
-        planets_params = self.request.query_params.get('planet').split(',')  # Getting list parameters
+        planets_params = self.request.query_params.get('planet').replace(' ', '').split(',')  # Getting list parameters
         planet_qs = self.planet_queryset.filter(name__in=planets_params)  # Filter all planet with received params
         resident_params = planet_qs.values_list('residents', flat=True)  # Get residents values from filtered planets
         resident_qs = self.resident_queryset.filter(id__in=resident_params)  # Exclude all residents except parameters
