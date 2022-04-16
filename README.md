@@ -5,18 +5,23 @@ Star Wars REST API, serves people, planet and starship within its universe. Base
 Greeting Mr. Morrison, I'm Varachit Wirunpat. This is my first REST API Django Project. The reason for choosing Django is because I would like to try somoething new and challenge myself to adapt the existing knowledge with the new framework. Thank you for visiting and have a great day!
 
 ## Technology
-### Backend
-- Python 3.10.1
-- Django 4.0.3
-
 ### Frontend
 - React 18.0.0
 - Axios 0.26.1
+
+### Backend
+- Python 3.10.1
+- Django 4.0.3
 
 ## Design
 ![alt text](https://i.imgur.com/kV39g6j.png)
 
 ## Installation
+### Frontend
+#### Access React Frontend Webpage
+  `npm start`
+
+### Backend
 #### - Using Local Environment
   
   The required packages must be installed on the local environment to run this project, Please consult requirements.txt or simply execute the following command:
@@ -36,9 +41,6 @@ Greeting Mr. Morrison, I'm Varachit Wirunpat. This is my first REST API Django P
 - Access Django Administration or Management Panel
 
   Path: `127.0.0.1:8000/admin/`
-  
-- Access React Frontend Webpage
-  `npm start`
 
 ## Authorization
 ### Django Administration
