@@ -18,8 +18,11 @@ Greeting Mr. Morrison, I'm Varachit Wirunpat. This is my first REST API Django P
 
 ## Installation
 ### Frontend
-#### Access React Frontend Webpage
+#### Start React Frontend
   `npm start`
+
+#### Access Frontend Webpage
+  `http://127.0.0.1:3000`
 
 ### Backend
 #### - Using Local Environment
@@ -40,7 +43,7 @@ Greeting Mr. Morrison, I'm Varachit Wirunpat. This is my first REST API Django P
   
 - Access Django Administration or Management Panel
 
-  Path: `127.0.0.1:8000/admin/`
+  Path: `http://127.0.0.1:8000/admin/`
 
 ## Authorization
 ### Django Administration
