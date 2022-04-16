@@ -9,6 +9,10 @@ Greeting Mr. Morrison, I'm Varachit Wirunpat. This is my first REST API Django P
 - Python 3.10.1
 - Django 4.0.3
 
+### Frontend
+- React 18.0.0
+- Axios 0.26.1
+
 ## Design
 ![alt text](https://i.imgur.com/kV39g6j.png)
 
@@ -32,6 +36,9 @@ Greeting Mr. Morrison, I'm Varachit Wirunpat. This is my first REST API Django P
 - Access Django Administration or Management Panel
 
   Path: `127.0.0.1:8000/admin/`
+  
+- Access React Frontend Webpage
+  `npm start`
 
 ## Authorization
 ### Django Administration
