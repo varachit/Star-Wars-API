@@ -30,15 +30,15 @@ Greeting Mr. Morrison, I'm Varachit Wirunpat. This is my first REST API Django P
 
 - Start Development React Frontend
   ```
-    npm start
+  npm start
   ```
 
 
 - Production Build
   ```
-    npm run build
-    npm install -g serve
-    serve -s build
+  npm run build
+  npm install -g serve
+  serve -s build
   ```
 
 ### **Backend**
