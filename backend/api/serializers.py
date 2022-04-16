@@ -49,7 +49,7 @@ class StarshipSerializer(serializers.ModelSerializer):
 
 
 class PlanetSerializer(serializers.ModelSerializer):
-    url = serializers.HyperlinkedIdentityField(view_name='starship-detail', lookup_field='pk')
+    url = serializers.HyperlinkedIdentityField(view_name='planet-detail', lookup_field='pk')
     residents = PersonHyperlinkSerializer(many=True)
 
     class Meta:
@@ -62,7 +62,7 @@ class PlanetSerializer(serializers.ModelSerializer):
 
 
 class PersonSerializer(serializers.ModelSerializer):
-    url = serializers.HyperlinkedIdentityField(view_name='starship-detail', lookup_field='pk')
+    url = serializers.HyperlinkedIdentityField(view_name='person-detail', lookup_field='pk')
     homeworld = PlanetHyperlinkSerializer(many=True)
     starships = StarshipHyperlinkSerializer(many=True)
 
