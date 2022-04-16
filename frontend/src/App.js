@@ -1,8 +1,10 @@
 import React, {useEffect, useState} from 'react';
 import axios from "axios";
-import 'bootstrap/dist/css/bootstrap.min.css'
+import 'bootstrap/dist/css/bootstrap.min.css';
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+
 import './App.css';
-import { Row, Container, Navbar, Nav, Form, Alert, Button, Card, Table } from 'react-bootstrap'
+import { Alert, Badge, Button, Card, Col, Container, Form, Modal, Nav, Navbar, Row, Table } from 'react-bootstrap'
 
 function App() {
   const [mostPilotedSearchText, setMostPilotedSearchText] = useState("");
@@ -21,8 +23,22 @@ function App() {
   const [showStarshipResults, setShowStarshipResults] = useState(false);
   const [starshipData, setStarshipData] = useState({});
 
+  const [modalShow, setModalShow] = useState(false);
+  const handleClose = () => setModalShow(false);
+  const handleShow = () => setModalShow(true);
+
   useEffect(() => {
       document.title = "Star Wars";
+      const fontAwesomeScript = document.createElement("script")
+      fontAwesomeScript.src = "https://kit.fontawesome.com/aca914cd20.js"
+      fontAwesomeScript.async = true
+      fontAwesomeScript.crossOrigin = "anonymous"
+
+      document.body.appendChild(fontAwesomeScript)
+      return () => {
+        document.body.removeChild(fontAwesomeScript)
+    }
+
   }, [])
 
   function searchMostPilotedStarship(event) {
@@ -33,8 +49,6 @@ function App() {
        console.log(error)
     });
     setShowMostPilotedResults(true)
-
-      console.log(mostPilotedStarshipData)
   }
 
   function searchPerson(event) {
@@ -49,7 +63,6 @@ function App() {
    }).catch(function (error) {
     console.log(error)
    });
-   console.log(personData)
   }
 
   function searchPlanet(event) {
@@ -114,16 +127,69 @@ function searchStarship(event) {
                         <Nav.Link href="/">Home</Nav.Link>
                         <Nav.Link href="https://github.com/z3r0k0r3/Star-Wars-API/" target="_blank">Documentation</Nav.Link>
                         <Nav.Link href="http://127.0.0.1:8000/admin">Django Administration</Nav.Link>
+                        <Nav.Link onClick={handleShow}>About</Nav.Link>
                     </Nav>
                 </Navbar.Collapse>
             </Container>
           </Navbar>
 
+          {/* ABOUT MODAL */}
+          <Modal
+            show={modalShow}
+            onHide={handleClose}
+            backdrop="static"
+            keyboard={false}
+          >
+            <Modal.Header closeButton>
+              <Modal.Title>About me</Modal.Title>
+            </Modal.Header>
+            <Modal.Body>
+                <Container>
+                    <Row style={{ justifyContent: 'center' }}>
+                        <Col sm={5} style={{ display: 'flex', alignItems: 'center', justifyContent: 'right' }}>
+                            <div className="about_picture"></div>
+                        </Col>
+                        <Col style={{ display: 'flex', alignItems: 'center', justifyContent: 'left' }}>
+                            <Row>
+                                <h4>Varachit Wirunpat</h4>
+                                <h6><FontAwesomeIcon icon="fa-solid fa-location-dot" /> Nakhon Pathom, Thailand</h6>
+                                <h6><FontAwesomeIcon icon="fa-solid fa-envelope" /> doctors.csgo@gmail.com</h6>
+                                <h6>
+                                    <FontAwesomeIcon icon="fa-brands fa-linkedin fa-xl" />{' '}
+                                    <a style={{ textDecoration: "none", color: "#000000" }} href="https://www.linkedin.com/in/varachit/">Varachit Wirunpat</a>
+                                </h6>
+                                <h6>
+                                    <FontAwesomeIcon icon="fa-brands fa-github" />{' '}
+                                    <a style={{ textDecoration: "none", color: "#000000" }} href="https://github.com/z3r0k0r3/">Varachit W.</a>
+                                </h6>
+                                <h6>
+                                    <FontAwesomeIcon icon="fa-solid fa-phone" /> (66) 0 83004 3786
+                                </h6>
+                            </Row>
+                        </Col>
+                    </Row>
+
+
+                </Container>
+
+
+            </Modal.Body>
+            <Modal.Footer>
+              <Button variant="dark" onClick={handleClose}>
+                Close
+              </Button>
+            </Modal.Footer>
+          </Modal>
+
             <Container style={{ padding: 20, marginTop: 20 }}>
               <Row>
-                  <h4 style={{ textAlign: 'center' }}>Most Piloted Starship Searcher</h4>
-                  <h6 className="text-muted" style={{ textAlign: 'center' }}>Locates the most piloted starship across
-                      all of the residents from target planets.</h6>
+                  <div>
+                      <h4 className="position-relative" style={{ textAlign: 'center' }}>
+                          Most Piloted Starship Searcher <Badge bg="dark">New</Badge>{' '}
+                      </h4>
+                      <h6 className="text-muted" style={{ textAlign: 'center' }}>Locates the most piloted starship across
+                          all of the residents from target planets.</h6>
+                  </div>
                   <Form.Group className="mb-3">
                       <Form.Label>Planets</Form.Label>
                       <Form.Control type="text" placeholder="Sullust, Corellia, Kashyyyk"
@@ -183,7 +249,7 @@ function searchStarship(event) {
                                      value={personSearchText}
                                      onChange={e => setPersonSearchText(e.target.value)}
                       />
-                      <Form.Text className="text-muted">Search allowed to search individually</Form.Text>
+                      <Form.Text className="text-muted">Allowed to search individually</Form.Text>
                       <br />
                       <br />
                       <Button variant="primary" onClick={e => searchPerson(e)}>Search</Button>{' '}
@@ -205,7 +271,7 @@ function searchStarship(event) {
                                     <th>Mass</th>
                                     <th>Height</th>
                                     <th>Birth Year</th>
-                                    <th>More Information</th>
+                                    <th></th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -245,7 +311,7 @@ function searchStarship(event) {
                                      value={planetSearchText}
                                      onChange={e => setPlanetSearchText(e.target.value)}
                       />
-                      <Form.Text className="text-muted">Search allowed to search individually</Form.Text>
+                      <Form.Text className="text-muted">Allowed to search individually</Form.Text>
                       <br />
                       <br />
                       <Button variant="primary" onClick={e => searchPlanet(e)}>Search</Button>{' '}
@@ -270,7 +336,7 @@ function searchStarship(event) {
                                     <th>Diameter</th>
                                     <th>Rotation Period</th>
                                     <th>Orbital Period</th>
-                                    <th>More Information</th>
+                                    <th></th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -313,7 +379,7 @@ function searchStarship(event) {
                                      value={starshipSearchText}
                                      onChange={e => setStarshipSearchText(e.target.value)}
                       />
-                      <Form.Text className="text-muted">Search allowed to search individually</Form.Text>
+                      <Form.Text className="text-muted">Allowed to search individually</Form.Text>
                       <br />
                       <br />
                       <Button variant="primary" onClick={e => searchStarship(e)}>Search</Button>{' '}
@@ -338,7 +404,7 @@ function searchStarship(event) {
                                     <th>Hyperdrive Rating</th>
                                     <th>Cargo Capacity</th>
                                     <th>Length</th>
-                                    <th>More Information</th>
+                                    <th></th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -369,6 +435,7 @@ function searchStarship(event) {
                }
                </Container>
             </Container>
+
       </div>
   );
 }

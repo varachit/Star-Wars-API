@@ -36,3 +36,12 @@
     transform: rotate(360deg);
   }
 }
+
+.about_picture {
+    background: url(assets/image/varachit.jpg);
+    background-size: cover;
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    text-align: center;
+}
