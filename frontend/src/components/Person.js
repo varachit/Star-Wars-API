@@ -8,9 +8,9 @@ import "../App.css";
 import PersonIcon from '../assets/svg/person.svg';
 
 function Person() {
+    const [personData, setPersonData] = useState({});
     const [personSearchText, setPersonSearchText] = useState("");
     const [showPersonResults, setShowPersonResults] = useState(false);
-    const [personData, setPersonData] = useState({});
     const PersonListLocator = `${process.env.REACT_APP_API_DOMAIN}/api/v1/person/`;
 
     function searchPerson(event) {
@@ -27,9 +27,9 @@ function Person() {
     }
 
     function personResetForm() {
+        setPersonData({});
         setPersonSearchText('');
         setShowPersonResults(false);
-        setPersonData({});
     }
 
     return (

@@ -8,9 +8,9 @@ import "../App.css";
 import PlanetIcon from '../assets/svg/planet.svg';
 
 function Planet() {
+    const [planetData, setPlanetData] = useState({});
     const [planetSearchText, setPlanetSearchText] = useState("");
     const [showPlanetResults, setShowPlanetResults] = useState(false);
-    const [planetData, setPlanetData] = useState({});
     const PlanetListLocator = `${process.env.REACT_APP_API_DOMAIN}/api/v1/planet/`;
 
     function searchPlanet(event) {
@@ -27,9 +27,9 @@ function Planet() {
     }
 
     function planetResetForm() {
+        setPlanetData({});
         setPlanetSearchText('');
         setShowPlanetResults(false);
-        setPlanetData({});
     }
 
     return (

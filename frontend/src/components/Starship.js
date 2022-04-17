@@ -8,9 +8,9 @@ import "../App.css";
 import StarshipIcon from '../assets/svg/starship.svg';
 
 function Starship() {
+    const [starshipData, setStarshipData] = useState({});
     const [starshipSearchText, setStarshipSearchText] = useState("");
     const [showStarshipResults, setShowStarshipResults] = useState(false);
-    const [starshipData, setStarshipData] = useState({});
     const StarshipListLocator = `${process.env.REACT_APP_API_DOMAIN}/api/v1/starship/`;
 
     function searchStarship(event) {
@@ -27,9 +27,9 @@ function Starship() {
     }
 
     function starshipResetForm() {
+        setStarshipData({});
         setStarshipSearchText('');
         setShowStarshipResults(false);
-        setStarshipData({});
     }
 
     return (

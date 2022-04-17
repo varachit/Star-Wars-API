@@ -8,25 +8,27 @@ import "../App.css";
 import DeathstarLogo from "./DeathstarLogo";
 
 function MostPilotedStarship() {
+    const [mostPilotedStarshipData, setMostPilotedStarshipData] = useState({});
     const [mostPilotedSearchText, setMostPilotedSearchText] = useState("");
     const [showMostPilotedResults, setShowMostPilotedResults] = useState(false);
-    const [mostPilotedStarshipData, setMostPilotedStarshipData] = useState({});
 
     function searchMostPilotedStarship(event) {
-        const endpoint = `${process.env.REACT_APP_API_DOMAIN}/api/v1/most_piloted?planet=`
-            + mostPilotedSearchText;
+        setShowMostPilotedResults(true);
+        if(mostPilotedSearchText === "") {
+            return;
+        }
+        const endpoint = `${process.env.REACT_APP_API_DOMAIN}/api/v1/most_piloted?planet=${mostPilotedSearchText}`;
         axios.get(endpoint).then(function (response) {
             setMostPilotedStarshipData(response.data);
         }).catch(function (error) {
             console.log(error);
         });
-        setShowMostPilotedResults(true);
     }
 
     function mostPilotedResetForm() {
+        setMostPilotedStarshipData({});
         setMostPilotedSearchText('');
         setShowMostPilotedResults(false);
-        setMostPilotedStarshipData({});
     }
 
     return (
