@@ -9,7 +9,7 @@ https://docs.djangoproject.com/en/4.0/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/4.0/ref/settings/
 """
-
+import os
 from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -20,11 +20,15 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = 'django-insecure-echlcupxf6_h9b320v$v4o20@q^3b_6u8^7rf9j!+uskt@r$yk'
+# SECRET_KEY = os.environ.get('SECRET_KEY')
+# ON PRODUCTION, ADD 'SECRET_KEY' TO ENVIRONMENT VARIABLE
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
+# DEBUG = (os.environ.get('DEBUG_VALUE') == 'True')
+# ON PRODUCTION, ADD 'DEBUG_VALUE' TO ENVIRONMENT VARIABLE AND SET VALUE TO 'TRUE' OR 'FALSE' WITH SINGLE QUOTE
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['starwars-api-django.herokuapp.com', 'localhost', '127.0.0.1']
 
 # Application definition
 
@@ -50,6 +54,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
 ]
 
 ROOT_URLCONF = 'starwars.urls'
@@ -119,7 +124,10 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.0/howto/static-files/
 
-STATIC_URL = 'static/'
+
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles') # Heroku Static Root
+STATIC_URL = '/static/'
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage' # Whitenoise
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field
