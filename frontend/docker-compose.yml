@@ -11,5 +11,4 @@ services:
     container_name: starwars_react_container
     command: npm start
 
-#docker-compose build .
-#docker-compose run starwars
+s
