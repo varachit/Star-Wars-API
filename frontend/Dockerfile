@@ -5,6 +5,6 @@ COPY . .
 RUN npm run build-prod
 CMD ["npm", "start"]
 
-#docker build --tag react.
-#docker run react
-#docker run --publish 3000:3000 react
+# docker build --tag starwars-react .
+# docker run starwars-react
+# docker run --publish 3000:3000 starwars-react
