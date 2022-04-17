@@ -1,6 +1,5 @@
-# Star Wars API ![GitHub last commit (branch)](https://img.shields.io/github/last-commit/z3r0k0r3/Star-Wars-API/master)
-[![npm version](https://badge.fury.io/js/react.svg)](https://badge.fury.io/js/react)\
-![GitHub Pipenv locked Python version](https://img.shields.io/github/pipenv/locked/python-version/z3r0k0r3/Star-Wars-API)
+# Star Wars API
+[![npm version](https://badge.fury.io/js/react.svg)](https://badge.fury.io/js/react)
 
 Star Wars API, serves people, planet and starship information within its universe. The application utilised SQLite, a lightweight disk-based database run along with the back-end application.
 
