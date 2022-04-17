@@ -1,36 +1,63 @@
-# Star Wars API
-Star Wars REST API, serves people, planet and starship information within its universe. The application utilised SQLite, a lightweight disk-based database run along with the back-end application.
+# Star Wars API ![GitHub last commit (branch)](https://img.shields.io/github/last-commit/z3r0k0r3/Star-Wars-API/master)
+[![npm version](https://badge.fury.io/js/react.svg)](https://badge.fury.io/js/react)\
+![GitHub Pipenv locked Python version](https://img.shields.io/github/pipenv/locked/python-version/z3r0k0r3/Star-Wars-API)
+
+Star Wars API, serves people, planet and starship information within its universe. The application utilised SQLite, a lightweight disk-based database run along with the back-end application.
+
+## Preview
+[Star Wars - starwars-varachit.vercel.app](https://starwars-varachit.vercel.app/)\
+[Star Wars API - starwars-api-django.herokuapp.com](https://starwars-api-django.herokuapp.com/)\
+[Star Wars API Administration - starwars-api-django.herokuapp.com/admin](https://starwars-api-django.herokuapp.com/admin)\
+(Username and Password are provided at Authorization Section)
+
+I deployed the frontend react web-application on [Vercel](https://vercel.com/) and backend API on [Heroku](heroku.com).
+On the backend production, PostgreSQL is being used due the better efficiency, approach and the unsupported of SQLite on Heroku.
+Both production server are hosted in the United States and that might have impacts on loading time. 
+Building process for both production went well and without any issues.
+
+#### Frontend Score from [Checkly](https://www.checklyhq.com/)
+- Virtual Experience Score: 100
+- Response Time (Total Browser Session): 1.3s
+- First Contentful Paint (FCP): 191ms
+- Largest Contentful Paint (LCP): 224ms
+- Cumulative Layout Shift (CLS - Lower is better): 0
+- Total Blocking Time (TBT): 23ms
+- Time To First Byte (TTFB): 76ms
 
 ## Note
-Greeting Mr. Morrison, I'm Varachit Wirunpat. This is my first REST API Django Project. The reason for choosing Django is because I would like to try something new and challenging as to adapt the existing knowledge with the new framework. Thank you for visiting and have a great day!
-
-The production is currently work-in-progress, additional .env is required to manage domain and relevant configuration.
+Greeting Mr. Morrison, I'm Varachit Wirunpat. This is my first REST API Django Project.
+The reason for choosing Django is that I would like to try something new and challenging 
+as to display my fast-learning skill as well as to adapt the existing knowledge with the new framework. 
+Thank you for visiting and have a great day!
 
 ## Technology
 ### Frontend
+- Node 16.14.2
 - React 18.0.0
 - Axios 0.26.1
+- Bootstrap 5.1.3
+- FontAwesome 6.1.1
 
 ### Backend
 - Python 3.10.1
 - Django 4.0.3
 
 ## Screenshot
-### React Frontend
+### Frontend
 ![alt text](https://i.imgur.com/XyaXeXT.png)
 
-## Design
+### Design
 ![alt text](https://i.imgur.com/iXEgG7y.png)
 
 ## Installation
 ### **Frontend**
 - Install dependencies
   ```
-  cd frontend
-  npm install
+  $ cd frontend
+  $ npm install
   ```
 
-- Start Development React Frontend
+- Start React Development Frontend
   ```
   npm start
   ```
