@@ -1,0 +1,15 @@
+version: "3.8"
+services:
+  starwars:
+    build:
+      context: .
+    volumes:
+      - .:/frontend
+    ports:
+      - 3000:3000
+    image: starwars:react
+    container_name: starwars_react_container
+    command: npm start
+
+#docker-compose build .
+#docker-compose run starwars
