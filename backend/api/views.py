@@ -3,7 +3,6 @@ from rest_framework import authentication, generics, permissions
 from statistics import multimode
 
 from .authentication import CustomTokenAuthentication
-
 from .models import Starship, Planet, Person
 from .serializers import StarshipSerializer, PlanetSerializer, PersonSerializer
 
@@ -22,7 +21,7 @@ class MostPilotedStarshipListView(generics.ListAPIView):
     def get_queryset(self):
         planets_params = self.request.query_params.get('planet').replace(' ', '').split(',')  # Getting list parameters
         planet_qs = self.planet_queryset.filter(name__in=planets_params)  # Filter all planet with received params
-        resident_params = planet_qs.values_list('residents', flat=True)  # Get residents values from filtered planets
+        resident_params = planet_qs.values_list('residents', flat=True)  # Get residents' ID from filtered planets
         resident_qs = self.resident_queryset.filter(id__in=resident_params)  # Exclude all residents except parameters
         starship_list = resident_qs.values_list('starships', flat=True)  # Get starships from filtered residents
         # Some resident does not have their own starship, So, None type exists
