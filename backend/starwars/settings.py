@@ -60,8 +60,9 @@ MIDDLEWARE = [
 ROOT_URLCONF = 'starwars.urls'
 CORS_URLS_REGEX =  r"^/api/v1/.*"
 CORS_ALLOWED_ORIGINS = [
+    'https://starwars-varachit.vercel.app',
     'http://localhost:3000',
-    'http://127.0.0.1:3000',
+    'http://127.0.0.1:3000'
 ]
 
 TEMPLATES = [
