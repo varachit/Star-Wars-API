@@ -24,7 +24,7 @@ SECRET_KEY = 'django-insecure-echlcupxf6_h9b320v$v4o20@q^3b_6u8^7rf9j!+uskt@r$yk
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['.vercel.app']
+ALLOWED_HOSTS = ['127.0.0.1', '.vercel.app']
 
 # Application definition
 
@@ -57,7 +57,6 @@ CORS_URLS_REGEX =  r"^/api/v1/.*"
 CORS_ALLOWED_ORIGINS = [
     'http://localhost:3000',
     'http://127.0.0.1:3000',
-    'https://starwars-varachit.vercel.app/'
 ]
 
 TEMPLATES = [
