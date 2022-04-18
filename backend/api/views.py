@@ -12,11 +12,6 @@ redis_instance = redis.StrictRedis(host=settings.REDIS_HOSTNAME,
                                    port=settings.REDIS_PORT, db=0)
 
 
-# SELECT *, COUNT(*) FROM starship
-# JOIN person ON person.starships = starship.id
-# JOIN planet ON planet.residents = person.id
-# GROUP BY *
-# ORDER BY COUNT(*) DESC
 class MostPilotedStarshipListView(generics.ListAPIView):
     planet_queryset = Planet.objects.all()
     resident_queryset = Person.objects.all()

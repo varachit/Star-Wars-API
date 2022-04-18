@@ -132,6 +132,13 @@ REDIS_HOSTNAME = os.getenv('REDIS_HOSTNAME')
 REDIS_PORT = os.getenv('REDIS_PORT')
 REDIS_PASSWORD = os.getenv('REDIS_PASSWORD')
 REDIS_TTL = os.getenv('REDIS_TTL')
+
+# REDIS_CACHING = (os.environ.get('REDIS_CACHING') == 'True')
+# REDIS_HOSTNAME = os.environ.get('REDIS_HOSTNAME')
+# REDIS_PORT = os.environ.get('REDIS_PORT')
+# REDIS_PASSWORD = os.environ.get('REDIS_PASSWORD')
+# REDIS_TTL = os.environ.get('REDIS_TTL')
+
 REDIS_LOCATION = f'redis://{REDIS_HOSTNAME}:{REDIS_PORT}/'
 
 # If your redis requires password please uncomment the configuration down below
@@ -167,8 +174,8 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.0/howto/static-files/
 
-# Heroku Static Root
-# STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 STATIC_URL = '/static/'
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'  # Whitenoise
 
