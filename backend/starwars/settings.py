@@ -10,7 +10,10 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/4.0/ref/settings/
 """
 import os
+from dotenv import load_dotenv
 from pathlib import Path
+
+load_dotenv()
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -20,15 +23,27 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = 'django-insecure-echlcupxf6_h9b320v$v4o20@q^3b_6u8^7rf9j!+uskt@r$yk'
+
 # SECRET_KEY = os.environ.get('SECRET_KEY')
-# ON PRODUCTION, ADD 'SECRET_KEY' TO ENVIRONMENT VARIABLE
+# TO USE VALUE FROM MACHINE ENVIRONMENT, ADD VARIABLE 'SECRET_KEY' TO YOUR ENVIRONMENT
+
+# SECRET_KEY = os.getenv('SECRET_KEY')
+# UNCOMMENT TO USE VALUE FROM PROJECT .ENV
+
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
-# DEBUG = (os.environ.get('DEBUG_VALUE') == 'True')
-# ON PRODUCTION, ADD 'DEBUG_VALUE' TO ENVIRONMENT VARIABLE AND SET VALUE TO 'TRUE' OR 'FALSE' WITH SINGLE QUOTE
+# DEBUG = True
+# ** Django Default **
 
-ALLOWED_HOSTS = ['starwars-api-django.herokuapp.com', 'localhost', '127.0.0.1']
+# DEBUG = (os.environ.get('DEBUG_VALUE') == 'True')
+# TO USE VALUE FROM MACHINE ENVIRONMENT, ADD VARIABLE 'DEBUG_VALUE' TO YOUR ENVIRONMENT
+# AND SET VALUE TO 'True' OR 'False' WITH SINGLE QUOTE
+
+DEBUG = (os.getenv('DEBUG_VALUE') == 'True')
+# UNCOMMENT TO USE VALUE FROM PROJECT .ENV
+
+ALLOWED_HOSTS = ['localhost', '127.0.0.1']
+# ALLOWED_HOSTS = ['starwars-api-django.herokuapp.com', 'localhost', '127.0.0.1']
 
 # Application definition
 
@@ -58,7 +73,7 @@ MIDDLEWARE = [
 ]
 
 ROOT_URLCONF = 'starwars.urls'
-CORS_URLS_REGEX =  r"^/api/v1/.*"
+CORS_URLS_REGEX = r"^/api/v1/.*"
 CORS_ALLOWED_ORIGINS = [
     'https://starwars-varachit.vercel.app',
     'http://localhost:3000',
@@ -111,6 +126,33 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
+# Cache
+REDIS_CACHING = (os.getenv('REDIS_CACHING') == 'True')
+REDIS_HOSTNAME = os.getenv('REDIS_HOSTNAME')
+REDIS_PORT = os.getenv('REDIS_PORT')
+REDIS_PASSWORD = os.getenv('REDIS_PASSWORD')
+REDIS_TTL = os.getenv('REDIS_TTL')
+REDIS_LOCATION = f'redis://{REDIS_HOSTNAME}:{REDIS_PORT}/'
+
+# If your redis requires password please uncomment the configuration down below
+
+CACHES = {
+    'default': {
+        'BACKEND': 'django_redis.cache.RedisCache',
+        'LOCATION': {REDIS_LOCATION},
+        'OPTIONS': {
+            # 'PASSWORD': REDIS_PASSWORD,
+            'CLIENT_CLASS': 'django_redis.client.DefaultClient',
+            'SERIALIZER': 'django_redis.serializers.json.JSONSerializer',
+        }
+    }
+}
+
+SESSION_ENGINE = "django.contrib.sessions.backends.cache"
+SESSION_CACHE_ALIAS = "default"
+
+
+
 # Internationalization
 # https://docs.djangoproject.com/en/4.0/topics/i18n/
 
@@ -125,10 +167,10 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.0/howto/static-files/
 
-
-STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles') # Heroku Static Root
+# Heroku Static Root
+# STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 STATIC_URL = '/static/'
-STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage' # Whitenoise
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'  # Whitenoise
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field
