@@ -36,11 +36,11 @@ SECRET_KEY = 'django-insecure-echlcupxf6_h9b320v$v4o20@q^3b_6u8^7rf9j!+uskt@r$yk
 # ** Django Default **
 
 # DEBUG = (os.environ.get('DEBUG_VALUE') == 'True')
-# TO USE VALUE FROM MACHINE ENVIRONMENT, ADD VARIABLE 'DEBUG_VALUE' TO YOUR ENVIRONMENT
+# USE VALUE FROM MACHINE ENVIRONMENT, ADD VARIABLE 'DEBUG_VALUE' TO YOUR ENVIRONMENT
 # AND SET VALUE TO 'True' OR 'False' WITH SINGLE QUOTE
 
-DEBUG = (os.getenv('DEBUG_VALUE') == 'True')
-# UNCOMMENT TO USE VALUE FROM PROJECT .ENV
+DEBUG = (os.getenv('DEBUG') == 'True')
+# USE VALUE FROM PROJECT .ENV
 
 ALLOWED_HOSTS = ['localhost', '127.0.0.1']
 # ALLOWED_HOSTS = ['starwars-api-django.herokuapp.com', 'localhost', '127.0.0.1']
@@ -130,16 +130,18 @@ AUTH_PASSWORD_VALIDATORS = [
 REDIS_CACHING = (os.getenv('REDIS_CACHING') == 'True')
 REDIS_HOSTNAME = os.getenv('REDIS_HOSTNAME')
 REDIS_PORT = os.getenv('REDIS_PORT')
+REDIS_USERNAME = os.getenv('REDIS_USERNAME')
 REDIS_PASSWORD = os.getenv('REDIS_PASSWORD')
 REDIS_TTL = os.getenv('REDIS_TTL')
 
 # REDIS_CACHING = (os.environ.get('REDIS_CACHING') == 'True')
 # REDIS_HOSTNAME = os.environ.get('REDIS_HOSTNAME')
 # REDIS_PORT = os.environ.get('REDIS_PORT')
+# REDIS_USERNAME = os.environ.get('REDIS_USERNAME')
 # REDIS_PASSWORD = os.environ.get('REDIS_PASSWORD')
 # REDIS_TTL = os.environ.get('REDIS_TTL')
 
-REDIS_LOCATION = f'redis://{REDIS_HOSTNAME}:{REDIS_PORT}/'
+REDIS_LOCATION = f'redis://{REDIS_HOSTNAME}:{REDIS_PORT}'
 
 # If your redis requires password please uncomment the configuration down below
 
@@ -158,8 +160,6 @@ CACHES = {
 SESSION_ENGINE = "django.contrib.sessions.backends.cache"
 SESSION_CACHE_ALIAS = "default"
 
-
-
 # Internationalization
 # https://docs.djangoproject.com/en/4.0/topics/i18n/
 
@@ -175,8 +175,8 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/4.0/howto/static-files/
 
 
-STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
-STATIC_URL = '/static/'
+# STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+STATIC_URL = 'static/'
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'  # Whitenoise
 
 # Default primary key field type
