@@ -12,7 +12,7 @@ function MostPilotedStarship() {
     const [mostPilotedSearchText, setMostPilotedSearchText] = useState("");
     const [showMostPilotedResults, setShowMostPilotedResults] = useState(false);
 
-    function searchMostPilotedStarship(event) {
+    function searchMostPilotedStarship() {
         setShowMostPilotedResults(true);
         if(mostPilotedSearchText === "") {
             return;
@@ -29,6 +29,38 @@ function MostPilotedStarship() {
         setMostPilotedStarshipData({});
         setMostPilotedSearchText('');
         setShowMostPilotedResults(false);
+    }
+
+    function renderResult() {
+        return (
+            <div className="row">
+                {mostPilotedStarshipData.results.map((value, index) =>
+                    <Card key={index} className="flex-fill"
+                          style={{ width: '18rem', marginLeft: '5px',
+                              marginBottom: '10px', display: 'inline-block'
+                          }}>
+                        <Card.Body>
+                            <Card.Title>{value.name}</Card.Title>
+                            <Card.Text>{value.model}</Card.Text>
+                            <Button
+                                variant="secondary" href={value.url}
+                                target="_blank">More Information
+                            </Button>
+                        </Card.Body>
+                    </Card>
+                )}
+            </div>
+        );
+    }
+
+    function renderNotFound() {
+        return (
+            <div>
+                <Alert variant="danger" onClose={() => setShowMostPilotedResults(false)} dismissible>
+                    No starship found!
+                </Alert>
+            </div>
+        );
     }
 
     return (
@@ -61,36 +93,7 @@ function MostPilotedStarship() {
                 </Row>
 
                 <Container className="container" style={{ display: showMostPilotedResults ? "block" : "none" }}>
-                    {
-                        mostPilotedStarshipData.count > 0 ?
-                        <>
-                            <div className="row">
-                                {mostPilotedStarshipData.results.map((value, index) =>
-                                    <Card key={index} className="flex-fill"
-                                          style={{ width: '18rem', marginLeft: '5px',
-                                              marginBottom: '10px', display: 'inline-block'
-                                          }}>
-                                        <Card.Body>
-                                            <Card.Title>{value.name}</Card.Title>
-                                            <Card.Text>{value.model}</Card.Text>
-                                            <Button
-                                                variant="secondary" href={value.url}
-                                                target="_blank">More Information
-                                            </Button>
-                                        </Card.Body>
-                                    </Card>
-                                )}
-                            </div>
-                        </>
-                        :
-                        <>
-                            <div>
-                                <Alert variant="danger" onClose={() => setShowMostPilotedResults(false)} dismissible>
-                                    No starship found!
-                                </Alert>
-                            </div>
-                        </>
-                    }
+                    { mostPilotedStarshipData.count > 0 ? renderResult() : renderNotFound() }
                 </Container>
             </Container>
         </div>

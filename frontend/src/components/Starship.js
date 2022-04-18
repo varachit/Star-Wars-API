@@ -13,7 +13,7 @@ function Starship() {
     const [showStarshipResults, setShowStarshipResults] = useState(false);
     const StarshipListLocator = `${process.env.REACT_APP_API_DOMAIN}/api/v1/starship/`;
 
-    function searchStarship(event) {
+    function searchStarship() {
         setShowStarshipResults(true)
         if(starshipSearchText === "") {
             return;
@@ -30,6 +30,55 @@ function Starship() {
         setStarshipData({});
         setStarshipSearchText('');
         setShowStarshipResults(false);
+    }
+
+    function renderResult() {
+        return (
+            <div>
+                <Table striped bordered hover>
+                    <thead>
+                        <tr style={{ textAlign: "center", verticalAlign: "middle"}}>
+                            <th>Name</th>
+                            <th>Model</th>
+                            <th>Class</th>
+                            <th>Manufacturer</th>
+                            <th>Atmosphering Speed</th>
+                            <th>Hyperdrive Rating</th>
+                            <th>Cargo Capacity</th>
+                            <th>Length</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {starshipData.results.map((value, index) =>
+                            <tr key={index} className="flex-fill" style={{ textAlign: "center", verticalAlign: "middle" }}>
+                                <td>{value.name}</td>
+                                <td>{value.model}</td>
+                                <td>{value.starship_class}</td>
+                                <td>{value.manufacturer}</td>
+                                <td>{value.max_atmosphering_speed}</td>
+                                <td>{value.hyperdrive_rating}</td>
+                                <td>{value.cargo_capacity}</td>
+                                <td>{value.length}</td>
+                                <td>
+                                    <Button variant="secondary" href={value.url} target="_blank">More Information</Button>
+                                </td>
+                            </tr>
+                        )}
+                    </tbody>
+                </Table>
+            </div>
+        );
+    }
+
+    function renderNotFound() {
+        return (
+            <div>
+                <Alert variant="danger" onClose={() => setShowStarshipResults(false)} dismissible>
+                    No starship found!
+                </Alert>
+            </div>
+        );
     }
 
     return (
@@ -57,53 +106,7 @@ function Starship() {
                 </Row>
 
                 <Container className="container" style={{ display: showStarshipResults ? "block" : "none" }}>
-                    {
-                        starshipData.count > 0 ?
-                        <>
-                            <div>
-                                <Table striped bordered hover>
-                                    <thead>
-                                        <tr style={{ textAlign: "center", verticalAlign: "middle"}}>
-                                            <th>Name</th>
-                                            <th>Model</th>
-                                            <th>Class</th>
-                                            <th>Manufacturer</th>
-                                            <th>Atmosphering Speed</th>
-                                            <th>Hyperdrive Rating</th>
-                                            <th>Cargo Capacity</th>
-                                            <th>Length</th>
-                                            <th></th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        {starshipData.results.map((value, index) =>
-                                            <tr key={index} className="flex-fill" style={{ textAlign: "center", verticalAlign: "middle" }}>
-                                                <td>{value.name}</td>
-                                                <td>{value.model}</td>
-                                                <td>{value.starship_class}</td>
-                                                <td>{value.manufacturer}</td>
-                                                <td>{value.max_atmosphering_speed}</td>
-                                                <td>{value.hyperdrive_rating}</td>
-                                                <td>{value.cargo_capacity}</td>
-                                                <td>{value.length}</td>
-                                                <td>
-                                                    <Button variant="secondary" href={value.url} target="_blank">More Information</Button>
-                                                </td>
-                                            </tr>
-                                        )}
-                                    </tbody>
-                                </Table>
-                            </div>
-                        </>
-                        :
-                        <>
-                            <div>
-                                <Alert variant="danger" onClose={() => setShowStarshipResults(false)} dismissible>
-                                    No starship found!
-                                </Alert>
-                            </div>
-                        </>
-                    }
+                    { starshipData.count > 0 ? renderResult() : renderNotFound() }
                 </Container>
             </Container>
         </div>

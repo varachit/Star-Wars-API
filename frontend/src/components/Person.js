@@ -13,7 +13,7 @@ function Person() {
     const [showPersonResults, setShowPersonResults] = useState(false);
     const PersonListLocator = `${process.env.REACT_APP_API_DOMAIN}/api/v1/person/`;
 
-    function searchPerson(event) {
+    function searchPerson() {
         setShowPersonResults(true);
         if(personSearchText === "") {
             return;
@@ -30,6 +30,49 @@ function Person() {
         setPersonData({});
         setPersonSearchText('');
         setShowPersonResults(false);
+    }
+
+    function renderResult() {
+        return (
+            <div>
+                <Table striped bordered hover>
+                    <thead>
+                        <tr style={{ textAlign: "center", verticalAlign: "middle"}}>
+                            <th>Name</th>
+                            <th>Gender</th>
+                            <th>Mass</th>
+                            <th>Height</th>
+                            <th>Birth Year</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {personData.results.map((value, index) =>
+                            <tr key={index} className="flex-fill" style={{ textAlign: "center", verticalAlign: "middle" }}>
+                                <td>{value.name}</td>
+                                <td>{value.gender}</td>
+                                <td>{value.mass}</td>
+                                <td>{value.height}</td>
+                                <td>{value.birth_year}</td>
+                                <td>
+                                    <Button variant="secondary" href={value.url} target="_blank">More Information</Button>
+                                </td>
+                            </tr>
+                        )}
+                    </tbody>
+                </Table>
+            </div>
+        );
+    }
+
+    function renderNotFound() {
+        return (
+            <div>
+                <Alert variant="danger" onClose={() => setShowPersonResults(false)} dismissible>
+                    No person found!
+                </Alert>
+            </div>
+        )
     }
 
     return (
@@ -57,47 +100,7 @@ function Person() {
                 </Row>
 
                 <Container className="container" style={{ display: showPersonResults ? "block" : "none" }}>
-                    {
-                        personData.count > 0 ?
-                        <>
-                            <div>
-                                <Table striped bordered hover>
-                                    <thead>
-                                        <tr style={{ textAlign: "center", verticalAlign: "middle"}}>
-                                            <th>Name</th>
-                                            <th>Gender</th>
-                                            <th>Mass</th>
-                                            <th>Height</th>
-                                            <th>Birth Year</th>
-                                            <th></th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        {personData.results.map((value, index) =>
-                                            <tr key={index} className="flex-fill" style={{ textAlign: "center", verticalAlign: "middle" }}>
-                                                <td>{value.name}</td>
-                                                <td>{value.gender}</td>
-                                                <td>{value.mass}</td>
-                                                <td>{value.height}</td>
-                                                <td>{value.birth_year}</td>
-                                                <td>
-                                                    <Button variant="secondary" href={value.url} target="_blank">More Information</Button>
-                                                </td>
-                                            </tr>
-                                        )}
-                                    </tbody>
-                                </Table>
-                            </div>
-                        </>
-                        :
-                        <>
-                            <div>
-                                <Alert variant="danger" onClose={() => setShowPersonResults(false)} dismissible>
-                                    No person found!
-                                </Alert>
-                            </div>
-                        </>
-                    }
+                    { personData.count > 0 ? renderResult() : renderNotFound() }
                 </Container>
             </Container>
         </div>
