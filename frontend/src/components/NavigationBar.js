@@ -36,10 +36,10 @@ function NavigationBar() {
                 <Modal.Body>
                     <Container>
                         <Row style={{ justifyContent: 'center' }}>
-                            <Col sm={5} style={{ display: 'flex', alignItems: 'center', justifyContent: 'right' }}>
+                            <Col sm={5} style={{ display: 'flex', alignItems: 'center', justifyContent: 'center'}}>
                                 <div className="about_picture"></div>
                             </Col>
-                            <Col style={{ display: 'flex', alignItems: 'center', justifyContent: 'left' }}>
+                            <Col style={{ display: 'flex', alignItems: 'center', justifyContent: 'left', marginTop: '5px'}}>
                                 <Row>
                                     <h4>Varachit Wirunpat</h4>
                                     <h6><FontAwesomeIcon icon="fa-solid fa-location-dot" />{' '}Nakhon Pathom, Thailand</h6>

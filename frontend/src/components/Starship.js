@@ -34,8 +34,8 @@ function Starship() {
 
     function renderResult() {
         return (
-            <div>
-                <Table striped bordered hover>
+            <div className="table-responsive">
+                <Table striped bordered hover className="table">
                     <thead>
                         <tr style={{ textAlign: "center", verticalAlign: "middle"}}>
                             <th>Name</th>
