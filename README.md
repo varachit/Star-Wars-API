@@ -1,18 +1,17 @@
 # Star Wars API
-[![npm version](https://badge.fury.io/js/react.svg)](https://badge.fury.io/js/react)
 
-Star Wars API, serves people, planet and starship information within its universe. The application utilised SQLite, a lightweight disk-based database run along with the back-end application.
+Star Wars API, serves people, planet and starship information within its universe. The application utilised SQLite, a lightweight disk-based database run along with the back-end application and integrated with Redis Caching.
 
 ## Preview
-[Star Wars - starwars-varachit.vercel.app](https://starwars-varachit.vercel.app/)\
-[Star Wars API - starwars-api-django.herokuapp.com](https://starwars-api-django.herokuapp.com/)\
-[Star Wars API Administration - starwars-api-django.herokuapp.com/admin](https://starwars-api-django.herokuapp.com/admin)\
-[(Username and Password are provided at Authorization Section)](##-Authorization)
+[Star Wars @ starwars-varachit.vercel.app](https://starwars-varachit.vercel.app/)\
+[Star Wars API @ starwars-api-django.herokuapp.com](https://starwars-api-django.herokuapp.com/)\
+[Star Wars API Administration @ starwars-api-django.herokuapp.com/admin](https://starwars-api-django.herokuapp.com/admin)\
+(The authorization credentials are provided at Authorization Section)
 
 I deployed the frontend react web-application on [Vercel](https://vercel.com/) and backend API on [Heroku](heroku.com).
 On the backend production, PostgreSQL is being used due the better efficiency, approach and the unsupported of SQLite on Heroku.
-Both production server are hosted in the United States and that might have impacts on loading time. 
-Building process for both production went well and without any issues.
+Both production servers are hosted in the United States and that might have impacts on loading time due to the high latency from
+our current location in Thailand. Building process for both production went well and without any issues.
 
 #### Frontend Score from [Checkly](https://www.checklyhq.com/)
 - Virtual Experience Score: 100
@@ -41,6 +40,7 @@ Thank you for visiting and have a great day!
 - Python 3.10.1
 - Django 4.0.3
 - djangorestframework 3.13.1
+- Redis 5.2.0
 
 ## Screenshot
 ### Frontend
@@ -56,6 +56,14 @@ Thank you for visiting and have a great day!
   ```
   $ cd frontend
   $ npm install
+  ```
+
+- Frontend Project Environment\
+  `.env` is applied during the development stage.\
+  `.env.production` is applied during the production or `build:prod`
+  ```
+  REACT_APP_API_DOMAIN=HOSTNAME
+  # REACT_APP_API_DOMAIN=http://127.0.0.1:8000
   ```
 
 - Start React Development Frontend
@@ -110,13 +118,32 @@ Thank you for visiting and have a great day!
   $ source venv\bin\activate
   ```
   
-  - Environment Variable (Optional)\
+- Caching\
+  The caching option is disabled, seek Project Environment or change configuration in .env to enable data caching.
+
+
+- Backend Project Environment
+  ```
+  SECRET_KEY='KEY' # Disabled and using django default 
+  # Goto backend/starwars/settings.py to learn more.
+  
+  DEBUG_VALUE='True'
+  # To use machine environment variable, please see backend/starwars/settings.py
+  
+  # Caching
+  REDIS_CACHING='False'
+  REDIS_HOSTNAME=localhost
+  REDIS_PORT=6379
+  REDIS_PASSWORD=PASSWORD # Disabled, if your redis requires password please see settings.py
+  REDIS_TTL=3600
+  ```
+  - Machine Environment Variable (Optional)\
   While committing to the production, it requires effort to change the settings or configurations and re-committing.
   With environment variable, these value could be changed within the environment variable on Cloud. 
   Currently, it is disabled for convenience purposes. To enable go to backend/starwars/settings.py and uncomment the wanted line.
   ```
   SECRET_KEY = 'KEY'
-  DEBUG_VALUE = 'TRUE'
+  DEBUG_VALUE = 'True'
   ```
 
   - Start Development Backend
