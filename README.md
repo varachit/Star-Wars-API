@@ -129,6 +129,7 @@ Can't wait to meet with you again soon. Thank you for visiting and have a great 
 - Caching\
   Implemented with Redis. The caching option is now disabled to easily maintain during development purposes, seek Project Environment or change configuration in .env to enable data caching.
   Read the following instructions to enable Redis Caching.
+  
     - Setup
       - Windows
         1. [Download and Install Redis @ redis.io](https://redis.io/download/#redis-downloads)
@@ -180,10 +181,10 @@ Can't wait to meet with you again soon. Thank you for visiting and have a great 
   REDIS_PASSWORD=PASSWORD
   REDIS_TTL=3600 # (In seconds)
   ```
-  - Machine Environment Variable (Optional)\
-  While committing to the production, it requires effort to change the settings or configurations and re-committing.
-  With environment variable, these value could be changed within the environment variable on Cloud. 
-  Currently, it is disabled for convenience purposes. To enable go to backend/starwars/settings.py and uncomment the wanted line.
+- Machine Environment Variable (Optional)\
+While committing to the production, it requires effort to change the settings or configurations and re-committing.
+With environment variable, these value could be changed within the environment variable on Cloud. 
+Currently, it is disabled for convenience purposes. To enable go to backend/starwars/settings.py and uncomment the wanted line.
   
   ```
   SECRET_KEY = 'KEY'
@@ -197,12 +198,12 @@ Can't wait to meet with you again soon. Thank you for visiting and have a great 
   REDIS_TTL=3600 # (In seconds)
   ```
 
-  - Start Development Backend
+- Start Development Backend
   ```
   $ python manage.py runserver 8000
   ```
   
-  - Dockerizing
+- Dockerizing
   ```
   $ docker build --tag starwars-django .
   $ docker run --publish 8000:8000 starwars-django
