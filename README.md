@@ -10,8 +10,16 @@ Star Wars API, serves people, planet and starship information within its univers
 
 I deployed the frontend react web-application on [Vercel](https://vercel.com/) and backend API on [Heroku](heroku.com).
 On the backend production, PostgreSQL is being used due the better efficiency, approach and the unsupported of SQLite on Heroku.
-Both production servers are hosted in the United States and that might have impacts on loading time due to the high latency from
+The Django REST is also linked with Redis Cloud to store and cache data. 
+Both servers are hosted in the United States and that might have impacts on loading time due to the high latency from
 our current location in Thailand. Building process for both production went well and without any issues.
+
+### Technology on Production
+- React 18.0.0 (Frontend) @ Vercel
+- Django 4.0.3 (Backend) @ Heroku
+- PostgreSQL (Database) @ Heroku
+- Redis (Cache Store) @ Redis Cloud
+
 
 #### Frontend Score from [Checkly](https://www.checklyhq.com/)
 - Virtual Experience Score: 100
@@ -25,8 +33,8 @@ our current location in Thailand. Building process for both production went well
 ## Note
 Greeting Mr. Morrison, I'm Varachit Wirunpat. This is my first REST API Django Project.
 The reason for choosing Django is that I would like to try something new and challenging 
-as to display my fast-learning skill as well as to adapt the existing knowledge with the new framework. 
-Thank you for visiting and have a great day!
+as to display my fast-learning skill as well as to adapt the existing knowledge with the new framework and tech stack. 
+Can't wait to meet with you again soon. Thank you for visiting and have a great day!
 
 ## Technology
 ### Frontend
@@ -120,22 +128,57 @@ Thank you for visiting and have a great day!
   
 - Caching\
   Implemented with Redis. The caching option is now disabled to easily maintain during development purposes, seek Project Environment or change configuration in .env to enable data caching.
-
+  Read the following instructions to enable Redis Caching.
+    - Setup
+      - Windows
+        1. [Download and Install Redis @ redis.io](https://redis.io/download/#redis-downloads)
+        2. Redis service generally auto-start after the installation on Windows
+        3. Open Terminal, Command Prompt or command-line interpreter and execute the following command to open Redis CLI:
+        ```
+        $ redis-cli
+        ```
+        4. Configure the backend project environment whether on .env or on machine environment. Refer Backend Project Environment.
+        
+      - Mac
+        1. Download and Install Redis with the following command on Terminal:
+        ```
+        $ brew install redis
+        ```
+        2. Start service
+        ```
+        $ brew services start redis
+        ```
+        3. Connect to Redis using Redis CLI
+        ```
+        $ redis-cli
+        ```
+        4. Configure the backend project environment whether on .env or on machine environment. Refer Backend Project Environment.
+        
+    - Testing
+      - Run frontend web-application and backend at the same time
+      - Monitor the Redis Server or Caching Server using the following command on Redis CLI
+      ```
+      $ redis-cli
+      $ monitor
+      ```
+      - All activities will be logged there
+      
 
 - Backend Project Environment
   ```
   SECRET_KEY='KEY' # Disabled and using django default 
   # Goto backend/starwars/settings.py to learn more.
   
-  DEBUG_VALUE='True'
+  DEBUG='True'
   # To use machine environment variable, please see backend/starwars/settings.py
   
   # Caching
   REDIS_CACHING='False'
   REDIS_HOSTNAME=localhost
   REDIS_PORT=6379
-  REDIS_PASSWORD=PASSWORD # Disabled, if your redis requires password please see settings.py
-  REDIS_TTL=3600
+  REDIS_USERNAME=USERNAME
+  REDIS_PASSWORD=PASSWORD
+  REDIS_TTL=3600 # (In seconds)
   ```
   - Machine Environment Variable (Optional)\
   While committing to the production, it requires effort to change the settings or configurations and re-committing.
@@ -144,7 +187,14 @@ Thank you for visiting and have a great day!
   
   ```
   SECRET_KEY = 'KEY'
-  DEBUG_VALUE = 'True'
+  DEBUG = 'True'
+  
+  REDIS_CACHING='False'
+  REDIS_HOSTNAME=localhost
+  REDIS_PORT=6379
+  REDIS_USERNAME=USERNAME
+  REDIS_PASSWORD=PASSWORD
+  REDIS_TTL=3600 # (In seconds)
   ```
 
   - Start Development Backend
@@ -177,7 +227,7 @@ Thank you for visiting and have a great day!
       Path: [http://127.0.0.1:8000/admin/](http://127.0.0.1:8000/admin/)
 
 
-  - AccessLocal React Frontend\
+  - Access Local React Frontend\
     Path: [http://127.0.0.1:3000/](http://127.0.0.1:3000/)
 
 ## Authorization
