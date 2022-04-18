@@ -60,7 +60,7 @@ Thank you for visiting and have a great day!
 
 - Frontend Project Environment\
   `.env` is applied during the development stage.\
-  `.env.production` is applied during the production or `build:prod`
+  `.env.production` is applied during the production build or `build:prod`
   ```
   REACT_APP_API_DOMAIN=HOSTNAME
   # REACT_APP_API_DOMAIN=http://127.0.0.1:8000
@@ -119,7 +119,7 @@ Thank you for visiting and have a great day!
   ```
   
 - Caching\
-  The caching option is disabled, seek Project Environment or change configuration in .env to enable data caching.
+  Implemented with Redis. The caching option is now disabled to easily maintain during development purposes, seek Project Environment or change configuration in .env to enable data caching.
 
 
 - Backend Project Environment
@@ -141,6 +141,7 @@ Thank you for visiting and have a great day!
   While committing to the production, it requires effort to change the settings or configurations and re-committing.
   With environment variable, these value could be changed within the environment variable on Cloud. 
   Currently, it is disabled for convenience purposes. To enable go to backend/starwars/settings.py and uncomment the wanted line.
+  
   ```
   SECRET_KEY = 'KEY'
   DEBUG_VALUE = 'True'
