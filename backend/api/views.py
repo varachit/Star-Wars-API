@@ -9,11 +9,11 @@ from .authentication import CustomTokenAuthentication
 from .models import Starship, Planet, Person
 from .serializers import StarshipSerializer, PlanetSerializer, PersonSerializer
 
-redis_instance = redis.StrictRedis(host=settings.REDIS_HOSTNAME, port=settings.REDIS_PORT, db=0,
-                                   username=settings.REDIS_USERNAME, password=settings.REDIS_PASSWORD)
+# redis_instance = redis.StrictRedis(host=settings.REDIS_HOSTNAME, port=settings.REDIS_PORT, db=0,
+#                                    username=settings.REDIS_USERNAME, password=settings.REDIS_PASSWORD)
 
-# redis_instance = redis.StrictRedis(host=settings.REDIS_HOSTNAME,
-#                                    port=settings.REDIS_PORT, db=0)
+redis_instance = redis.StrictRedis(host=settings.REDIS_HOSTNAME,
+                                   port=settings.REDIS_PORT, db=0)
 
 
 class MostPilotedStarshipListView(generics.ListAPIView):
