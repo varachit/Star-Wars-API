@@ -1,35 +1,56 @@
 import React, { useState } from "react";
 import axios from "axios";
 import 'bootstrap/dist/css/bootstrap.min.css';
-import { Alert, Button, Container, Form, Row, Table } from "react-bootstrap";
+import {Alert, Button, Container, Form, Row, Spinner, Table} from "react-bootstrap";
 
 import "../App.css";
 
 import PersonIcon from '../assets/svg/person.svg';
 
 function Person() {
+    const [isLoading, setLoading] = useState(true);
     const [personData, setPersonData] = useState({});
     const [personSearchText, setPersonSearchText] = useState("");
     const [showPersonResults, setShowPersonResults] = useState(false);
     const PersonListLocator = `${process.env.REACT_APP_API_DOMAIN}/api/v1/person/`;
 
     function searchPerson() {
+        clearPreviousRender()
         setShowPersonResults(true);
         if(personSearchText === "") {
+            setLoading(false);
             return;
         }
         const endpoint = `${process.env.REACT_APP_API_DOMAIN}/api/v1/person/search?name=${personSearchText}`;
         axios.get(endpoint).then(function (response) {
             setPersonData(response.data);
+            setLoading(false);
         }).catch(function (error) {
             console.log(error);
         });
+    }
+
+    function clearPreviousRender() {
+        setPersonData({});
+        setShowPersonResults(false);
+        setLoading(true);
     }
 
     function personResetForm() {
         setPersonData({});
         setPersonSearchText('');
         setShowPersonResults(false);
+        setLoading(true);
+    }
+
+    function renderLoading() {
+        return (
+            <div style={{ marginTop: '15px', verticalAlign: 'middle' }}>
+                <div>
+                    <Spinner animation="grow" />
+                </div>
+            </div>
+        )
     }
 
     function renderResult() {
@@ -100,7 +121,9 @@ function Person() {
                 </Row>
 
                 <Container className="container" style={{ display: showPersonResults ? "block" : "none" }}>
-                    { personData.count > 0 ? renderResult() : renderNotFound() }
+                    {
+                        isLoading ? renderLoading() : personData.count > 0 ? renderResult() : renderNotFound()
+                    }
                 </Container>
             </Container>
         </div>

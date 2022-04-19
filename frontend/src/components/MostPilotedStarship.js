@@ -1,34 +1,55 @@
 import React, { useState } from "react";
 import axios from "axios";
 import 'bootstrap/dist/css/bootstrap.min.css';
-import { Alert, Badge, Button, Card, Container, Form, Row } from "react-bootstrap";
+import { Alert, Badge, Button, Card, Container, Form, Row, Spinner } from "react-bootstrap";
 
 import "../App.css";
 
 import DeathstarLogo from "./DeathstarLogo";
 
 function MostPilotedStarship() {
+    const [isLoading, setLoading] = useState(true);
     const [mostPilotedStarshipData, setMostPilotedStarshipData] = useState({});
     const [mostPilotedSearchText, setMostPilotedSearchText] = useState("");
     const [showMostPilotedResults, setShowMostPilotedResults] = useState(false);
 
     function searchMostPilotedStarship() {
+        clearPreviousRender();
         setShowMostPilotedResults(true);
         if(mostPilotedSearchText === "") {
+            setLoading(false);
             return;
         }
         const endpoint = `${process.env.REACT_APP_API_DOMAIN}/api/v1/most_piloted?planet=${mostPilotedSearchText}`;
         axios.get(endpoint).then(function (response) {
             setMostPilotedStarshipData(response.data);
+            setLoading(false);
         }).catch(function (error) {
             console.log(error);
         });
+    }
+
+    function clearPreviousRender() {
+        setMostPilotedStarshipData({});
+        setShowMostPilotedResults(false);
+        setLoading(true);
     }
 
     function mostPilotedResetForm() {
         setMostPilotedStarshipData({});
         setMostPilotedSearchText('');
         setShowMostPilotedResults(false);
+        setLoading(true);
+    }
+
+    function renderLoading() {
+        return (
+            <div style={{ marginTop: '15px', verticalAlign: 'middle' }}>
+                <div>
+                    <Spinner animation="grow" />
+                </div>
+            </div>
+        )
     }
 
     function renderResult() {
@@ -93,7 +114,9 @@ function MostPilotedStarship() {
                 </Row>
 
                 <Container className="container" style={{ display: showMostPilotedResults ? "block" : "none" }}>
-                    { mostPilotedStarshipData.count > 0 ? renderResult() : renderNotFound() }
+                    {
+                        isLoading ? renderLoading() : mostPilotedStarshipData.count > 0 ? renderResult() : renderNotFound()
+                    }
                 </Container>
             </Container>
         </div>

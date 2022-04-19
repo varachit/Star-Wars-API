@@ -3,6 +3,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css';
 
 import NavigationBar from "./components/NavigationBar";
+import FooterBar from "./components/FooterBar";
 import MostPilotedStarship from "./components/MostPilotedStarship";
 import Person from "./components/Person";
 import Planet from "./components/Planet";
@@ -26,6 +27,7 @@ function App() {
             <Person />
             <Planet />
             <Starship />
+            <FooterBar />
         </div>
     );
 }

@@ -1,35 +1,55 @@
 import React, { useState } from "react";
 import axios from "axios";
 import 'bootstrap/dist/css/bootstrap.min.css';
-import {Alert, Button, Container, Form, Row, Table} from "react-bootstrap";
+import {Alert, Button, Container, Form, Row, Spinner, Table} from "react-bootstrap";
 
 import "../App.css";
 
 import PlanetIcon from '../assets/svg/planet.svg';
 
 function Planet() {
+    const [isLoading, setLoading] = useState(true);
     const [planetData, setPlanetData] = useState({});
     const [planetSearchText, setPlanetSearchText] = useState("");
     const [showPlanetResults, setShowPlanetResults] = useState(false);
     const PlanetListLocator = `${process.env.REACT_APP_API_DOMAIN}/api/v1/planet/`;
 
     function searchPlanet() {
+        clearPreviousRender();
         setShowPlanetResults(true)
         if(planetSearchText === "") {
+            setLoading(false);
             return;
         }
         const endpoint = `${process.env.REACT_APP_API_DOMAIN}/api/v1/planet/search?name=${planetSearchText}`;
         axios.get(endpoint).then(function (response) {
             setPlanetData(response.data);
+            setLoading(false);
         }).catch(function (error) {
             console.log(error);
         });
+    }
+
+    function clearPreviousRender() {
+        setPlanetData({});
+        setShowPlanetResults(false);
+        setLoading(true);
     }
 
     function planetResetForm() {
         setPlanetData({});
         setPlanetSearchText('');
         setShowPlanetResults(false);
+    }
+
+    function renderLoading() {
+        return (
+            <div style={{ marginTop: '15px', verticalAlign: 'middle' }}>
+                <div>
+                    <Spinner animation="grow" />
+                </div>
+            </div>
+        )
     }
 
     function renderResult() {
@@ -106,7 +126,9 @@ function Planet() {
                 </Row>
 
                 <Container className="container" style={{ display: showPlanetResults ? "block" : "none" }}>
-                    { planetData.count > 0 ? renderResult() : renderNotFound() }
+                    {
+                        isLoading ? renderLoading() : planetData.count > 0 ? renderResult() : renderNotFound()
+                    }
                 </Container>
             </Container>
         </div>

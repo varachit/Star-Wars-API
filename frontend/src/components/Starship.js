@@ -1,35 +1,55 @@
 import React, { useState } from "react";
 import axios from "axios";
 import 'bootstrap/dist/css/bootstrap.min.css';
-import { Alert, Button, Container, Form, Row, Table } from "react-bootstrap";
+import {Alert, Button, Container, Form, Row, Spinner, Table} from "react-bootstrap";
 
 import "../App.css";
 
 import StarshipIcon from '../assets/svg/starship.svg';
 
 function Starship() {
+    const [isLoading, setLoading] = useState(true);
     const [starshipData, setStarshipData] = useState({});
     const [starshipSearchText, setStarshipSearchText] = useState("");
     const [showStarshipResults, setShowStarshipResults] = useState(false);
     const StarshipListLocator = `${process.env.REACT_APP_API_DOMAIN}/api/v1/starship/`;
 
     function searchStarship() {
+        clearPreviousRender();
         setShowStarshipResults(true)
         if(starshipSearchText === "") {
+            setLoading(false);
             return;
         }
         const endpoint = `${process.env.REACT_APP_API_DOMAIN}/api/v1/starship/search?name=${starshipSearchText}`;
         axios.get(endpoint).then(function (response) {
             setStarshipData(response.data);
+            setLoading(false);
         }).catch(function (error) {
             console.log(error);
         });
+    }
+
+    function clearPreviousRender() {
+        setStarshipData({});
+        setShowStarshipResults(false);
+        setLoading(true);
     }
 
     function starshipResetForm() {
         setStarshipData({});
         setStarshipSearchText('');
         setShowStarshipResults(false);
+    }
+
+    function renderLoading() {
+        return (
+            <div style={{ marginTop: '15px', verticalAlign: 'middle' }}>
+                <div>
+                    <Spinner animation="grow" />
+                </div>
+            </div>
+        )
     }
 
     function renderResult() {
@@ -106,7 +126,9 @@ function Starship() {
                 </Row>
 
                 <Container className="container" style={{ display: showStarshipResults ? "block" : "none" }}>
-                    { starshipData.count > 0 ? renderResult() : renderNotFound() }
+                    {
+                        isLoading ? renderLoading() : starshipData.count > 0 ? renderResult() : renderNotFound()
+                    }
                 </Container>
             </Container>
         </div>
