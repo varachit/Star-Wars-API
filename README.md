@@ -15,7 +15,8 @@ Documentation on the Star Wars API can be found here: [swapi.dev/documentation](
 A full list of planets can be found here [swapi.dev/api/planets](swapi.dev/api/planets),
 and there are similar routes for ships and people.
  
-An example: if your API received `Sullust, Corellia and Kashyyyk`, the result returned should be `YT-1300 light freighter`
+An example: if your API received `Sullust, Corellia and Kashyyyk`\
+The result returned should be `YT-1300 light freighter`
  
 Additional credit is awarded for API improvements such as reducing loading times (e.g. through caching), and so on.
 
