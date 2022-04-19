@@ -1,6 +1,23 @@
 # Star Wars API
 
-Star Wars API, serves people, planet and starship information within its universe. The application utilised SQLite, a lightweight disk-based database run along with the back-end application and integrated with Redis Caching.
+Star Wars API, serves people, planet and starship information within its universe. The application utilised SQLite, 
+a lightweight disk-based database run along with the back-end application and integrated with Redis Caching.
+
+## Project Instruction
+In a galaxy far far away…
+ 
+Using the Star Wars API (swapi.dev), build an API (you may use a framework like Django or Express, etc.) that, 
+given a list of planets, locates the most piloted ship across all the residents from those planets. 
+Your API should return the model of the ship. If there is a tie return all the tied ships.
+ 
+You will need to make various design decisions such as how your API receives the list of planets.
+Documentation on the Star Wars API can be found here: [swapi.dev/documentation](swapi.dev/documentation).
+A full list of planets can be found here [swapi.dev/api/planets](swapi.dev/api/planets),
+and there are similar routes for ships and people.
+ 
+An example: if your API received `Sullust, Corellia and Kashyyyk`, the result returned should be `YT-1300 light freighter`
+ 
+Additional credit is awarded for API improvements such as reducing loading times (e.g. through caching), and so on.
 
 ## Preview
 [Star Wars @ starwars-varachit.vercel.app](https://starwars-varachit.vercel.app/)\
@@ -56,6 +73,81 @@ Can't wait to meet with you again soon. Thank you for visiting and have a great 
 
 ### Design
 ![alt text](https://i.imgur.com/iXEgG7y.png)
+
+### Database Query
+```
+SELECT 
+    api_planet.name AS planet_name, 
+    api_person.name AS person_name,
+    api_starship.id AS starship_id, 
+    api_starship.name AS starship_name
+FROM api_starship
+
+-- Join with the Relationship Table and Another Entity Table   
+LEFT OUTER JOIN api_person_starships
+    ON api_starship.id = api_person_starships.starship_id
+LEFT OUTER JOIN api_person
+    ON api_person_starships.person_id = api_person.id
+	
+LEFT OUTER JOIN api_person_homeworld
+    ON api_person.id = api_person_homeworld.person_id
+LEFT OUTER JOIN api_planet
+    ON api_person_homeworld.planet_id = api_planet.id
+	
+WHERE api_planet.name = "Sullust" 
+    OR api_planet.name = "Corellia"
+    OR api_planet.name = "Kashyyyk"
+ORDER BY api_planet.name, api_person.name, api_starship.id
+```
+
+**Action:** `Get the all information on starship and residents in the target planets`\
+**Target planets:** `Sullust, Corellia and Kashyyyk`\
+**Result:**
+
+| **planet_name** 	| **person_name** 	| **starship_id** 	| **starship_name** 	|
+|---	|---	|---	|---	|
+| Corellia 	| Han Solo 	| 10 	| Millennium Falcon 	|
+| Corellia 	| Han Solo 	| 17 	| Imperial shuttle 	|
+| Corellia 	| Wedge Antilles 	| 12 	| X-wing 	|
+| Kashyyyk 	| Chewbacca 	| 10 	| Millennium Falcon 	|
+| Kashyyyk 	| Chewbacca 	| 17 	| Imperial shuttle 	|
+| Sullust 	| Nien Nunb 	| 10 	| Millennium Falcon 	|
+```
+SELECT
+    api_starship.id AS starship_id, 
+    api_starship.name AS starship_name,
+    api_starship.model AS starship_model,
+    COUNT(api_starship.id) AS starship_count
+FROM api_starship
+   
+LEFT OUTER JOIN api_person_starships
+    ON api_starship.id = api_person_starships.starship_id
+LEFT OUTER JOIN api_person
+    ON api_person_starships.person_id = api_person.id
+	
+LEFT OUTER JOIN api_person_homeworld
+    ON api_person.id = api_person_homeworld.person_id
+LEFT OUTER JOIN api_planet
+    ON api_person_homeworld.planet_id = api_planet.id
+	
+WHERE api_planet.name = "Sullust" 
+    OR api_planet.name = "Corellia"
+    OR api_planet.name = "Kashyyyk"
+
+GROUP BY api_starship.id
+ORDER BY starship_count DESC
+```
+
+**Action:** `Get the starship information owned by the residents in the target planets`\
+**Description** `starship_count is the amount of starship piloted by the people who reside in the target planets`\
+**Target planets:** `Sullust, Corellia and Kashyyyk`\
+**Result:**
+
+| **starship_id** 	| **starship_name** 	| **starship_model** 	| **starship_count** 	|
+|:---:	|:---:	|:---:	|:---:	|
+| 10 	| Millennium Falcon 	| YT-1300 light freighter 	| 3 	|
+| 17 	| Imperial shuttle 	| Lambda-class T-4a shuttle 	| 2 	|
+| 12 	| X-wing 	| T-65 X-wing 	| 1 	|
 
 ## Installation
 ### **Frontend**
@@ -155,14 +247,14 @@ Can't wait to meet with you again soon. Thank you for visiting and have a great 
         ```
         4. Configure the backend project environment whether on .env or on machine environment. Refer Backend Project Environment.
         
-    - Testing
-      - Run frontend web-application and backend at the same time
-      - Monitor the Redis Server or Caching Server using the following command on Redis CLI
-      ```
-      $ redis-cli
-      $ monitor
-      ```
-      - All activities will be logged there
+
+- Testing
+  - Run frontend web-application and backend at the same time
+  - Monitor the Redis Server or Caching Server using the following command on Redis CLI
+  ```
+  $ monitor
+  ```
+  - All activities will be logged there
       
 
 - Backend Project Environment
