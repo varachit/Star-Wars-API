@@ -46,11 +46,15 @@ function NavigationBar() {
                                     <h6><FontAwesomeIcon icon="fa-solid fa-envelope" />{' '}doctors.csgo@gmail.com</h6>
                                     <h6>
                                         <FontAwesomeIcon icon="fa-brands fa-linkedin fa-xl" />{' '}
-                                        <a style={{ textDecoration: "none", color: "#000000" }} href="https://www.linkedin.com/in/varachit/">Varachit Wirunpat</a>
+                                        <a style={{ textDecoration: "none", color: "#000000" }}
+                                           href="https://www.linkedin.com/in/varachit/"
+                                           target="_blank" rel="noreferrer">Varachit Wirunpat</a>
                                     </h6>
                                     <h6>
                                         <FontAwesomeIcon icon="fa-brands fa-github" />{' '}
-                                        <a style={{ textDecoration: "none", color: "#000000" }} href="https://github.com/z3r0k0r3/">Varachit W.</a>
+                                        <a style={{ textDecoration: "none", color: "#000000" }}
+                                           href="https://github.com/z3r0k0r3/"
+                                           target="_blank" rel="noreferrer">Varachit W.</a>
                                     </h6>
                                     <h6>
                                         <FontAwesomeIcon icon="fa-solid fa-phone" />{' '}(66) 0 83004 3786

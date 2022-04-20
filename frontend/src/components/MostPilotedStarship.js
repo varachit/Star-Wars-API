@@ -20,7 +20,7 @@ function MostPilotedStarship() {
             setLoading(false);
             return;
         }
-        const endpoint = `${process.env.REACT_APP_API_DOMAIN}/api/v1/most_piloted?planet=${mostPilotedSearchText}`;
+        const endpoint = `${process.env.REACT_APP_API_DOMAIN}/api/v1/most_piloted_starship?planet=${mostPilotedSearchText}`;
         axios.get(endpoint).then(function (response) {
             setMostPilotedStarshipData(response.data);
             setLoading(false);
