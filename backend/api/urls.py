@@ -6,7 +6,7 @@ from . import views
 
 urlpatterns = [
     path('auth/', obtain_auth_token),
-    path('most_piloted', views.MostPilotedStarshipListView.as_view(), name='planets'),
+    path('most_piloted_starship', views.MostPilotedStarshipListView.as_view(), name='planets'),
 
     path('starship/', views.StarshipListCreateAPIView.as_view(), name='starship-list'),
     path('starship/search', views.StarshipListSearchView.as_view(), name='starship-search'),
