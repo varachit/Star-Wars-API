@@ -34,7 +34,7 @@ our current location in Thailand. Building process for both production went well
 
 ### Technology on Production
 - React 18.0.0 (Frontend) @ Vercel
-- Django 4.0.3 (Backend) @ Heroku
+- Django 4.0.4 (Backend) @ Heroku
 - PostgreSQL (Database) @ Heroku
 - Redis (Cache Store) @ Redis Cloud
 
@@ -64,9 +64,10 @@ Can't wait to meet with you again soon. Thank you for visiting and have a great 
 
 ### Backend
 - Python 3.10.1
-- Django 4.0.3
+- Django 4.0.4
 - djangorestframework 3.13.1
 - django-redis 5.2.0
+- algoliasearch-django 2.0.0
 
 ## Screenshot
 ### Frontend
@@ -249,6 +250,14 @@ ORDER BY starship_count DESC
         4. Configure the backend project environment whether on .env or on machine environment. Refer Backend Project Environment.
         
 
+- Algolia\
+  [Algolia](https://www.algolia.com/) is an AI-powered search, and it is really fast. Most search queries take from 1 to 20 milliseconds to process.
+  In this project, it is being disabled due to its needless right now. However, I discovered the possible potential 
+  in the future development. Therefore, I am determined to create the environment for Algolia in advance.
+  When necessary, turn on in the configuration, and it can be used immediately. On the production, this feature would be
+  enabled to connect with the Algolia service where the data in the database are synchronized with it. 
+
+
 - Testing
   - Run frontend web-application and backend at the same time
   - Monitor the Redis Server or Caching Server using the following command on Redis CLI
@@ -273,6 +282,11 @@ ORDER BY starship_count DESC
   REDIS_USERNAME=USERNAME
   REDIS_PASSWORD=PASSWORD
   REDIS_TTL=3600 # (In seconds)
+  
+  # Algolia (Disabled by default, to enable, goto settings.py)
+  ALGOLIA_APPLICATION_ID=APPLICATION_ID
+  ALGOLIA_API_KEY=API_KEY
+  ALGOLIA_INDEX_PREFIX='Starwars'
   ```
 - Machine Environment Variable (Optional)\
 While committing to the production, it requires effort to change the settings or configurations and re-committing.
@@ -289,6 +303,10 @@ Currently, it is disabled for convenience purposes. To enable go to backend/star
   REDIS_USERNAME=USERNAME
   REDIS_PASSWORD=PASSWORD
   REDIS_TTL=3600 # (In seconds)
+
+  ALGOLIA_APPLICATION_ID=APPLICATION_ID
+  ALGOLIA_API_KEY=API_KEY
+  ALGOLIA_INDEX_PREFIX='Starwars'
   ```
 
 - Start Development Backend
@@ -349,10 +367,10 @@ Read-only permission is allowed for the Unauthenticated User.
 
 ## Endpoints
 ### General
-| Action 	| Method 	| Endpoint 	|                                                  Description 	                                                   |
-|:---:	|:---:	|:---:	|:----------------------------------------------------------------------------------------------------------------:|
-| Get access token 	| POST 	| /api/v1/auth/ 	|                                       **Parameters**: Username, Password 	                                       |
-| Get the most piloted ship<br>across all of the residents<br>from the specified planets 	| GET 	| /api/v1/most_piloted 	| **Parameter**: planet (Delimited using Commas)<br>Example: /api/v1/most_piloted?planet=Sullust,Corellia,Kashyyyk |
+| Action 	| Method 	|           Endpoint 	            |                                                  Description 	                                                   |
+|:---:	|:---:	|:-------------------------------:|:----------------------------------------------------------------------------------------------------------------:|
+| Get access token 	| POST 	|         /api/v1/auth/ 	         |                                       **Parameters**: Username, Password 	                                       |
+| Get the most piloted ship<br>across all of the residents<br>from the specified planets 	| GET 	| /api/v1/most_piloted_starship 	 | **Parameter**: planet (Delimited using Commas)<br>Example: /api/v1/most_piloted_starship?planet=Sullust,Corellia,Kashyyyk |
 
 ### Starship
 | Action 	| Method 	| Endpoint 	| Description 	|
