@@ -1,9 +1,9 @@
-import React, { useState } from "react";
+import React, { useState } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import { Button, Col, Container, Modal, Nav, Navbar, Row } from "react-bootstrap";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { Button, Col, Container, Modal, Nav, Navbar, Row } from 'react-bootstrap';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
-import "../App.css";
+import '../App.css';
 
 function NavigationBar() {
     const [modalShow, setModalShow] = useState(false);

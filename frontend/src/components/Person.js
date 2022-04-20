@@ -1,9 +1,9 @@
-import React, { useState } from "react";
-import axios from "axios";
+import React, { useState } from 'react';
+import axios from 'axios';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import {Alert, Button, Container, Form, Row, Spinner, Table} from "react-bootstrap";
+import {Alert, Button, Container, Form, Row, Spinner, Table} from 'react-bootstrap';
 
-import "../App.css";
+import '../App.css';
 
 import PersonIcon from '../assets/svg/person.svg';
 

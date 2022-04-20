@@ -1,11 +1,11 @@
-import React, { useState } from "react";
-import axios from "axios";
+import React, { useState } from 'react';
+import axios from 'axios';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import { Alert, Badge, Button, Card, Container, Form, Row, Spinner } from "react-bootstrap";
+import { Alert, Badge, Button, Card, Container, Form, Row, Spinner } from 'react-bootstrap';
 
-import "../App.css";
+import '../App.css';
 
-import DeathstarLogo from "./DeathstarLogo";
+import DeathstarLogo from './DeathstarLogo';
 
 function MostPilotedStarship() {
     const [isLoading, setLoading] = useState(true);

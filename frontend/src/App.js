@@ -2,12 +2,12 @@ import React, { useEffect } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css';
 
-import NavigationBar from "./components/NavigationBar";
-import FooterBar from "./components/FooterBar";
-import MostPilotedStarship from "./components/MostPilotedStarship";
-import Person from "./components/Person";
-import Planet from "./components/Planet";
-import Starship from "./components/Starship";
+import NavigationBar from './components/NavigationBar';
+import FooterBar from './components/FooterBar';
+import MostPilotedStarship from './components/MostPilotedStarship';
+import Person from './components/Person';
+import Planet from './components/Planet';
+import Starship from './components/Starship';
 
 function App() {
     useEffect(() => {

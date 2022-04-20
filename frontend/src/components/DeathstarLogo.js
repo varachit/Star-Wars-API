@@ -1,7 +1,7 @@
-import React from "react";
+import React from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
-import "../App.css";
+import '../App.css';
 
 import Deathstar from '../assets/svg/deathstar.svg';
 
