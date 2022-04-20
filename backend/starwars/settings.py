@@ -54,10 +54,11 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'debug_toolbar',
-    'corsheaders',
+    # 'algoliasearch_django', # Algolia
     'rest_framework',
     'rest_framework.authtoken',
+    'corsheaders',
+    'debug_toolbar',
     'api',
 ]
 
@@ -197,3 +198,18 @@ REST_FRAMEWORK = {
     "DEFAULT_PAGINATION_CLASS": "rest_framework.pagination.LimitOffsetPagination",
     "PAGE_SIZE": 10
 }
+
+
+ALGOLIA_APPLICATION_ID = os.getenv('ALGOLIA_APPLICATION_ID')
+ALGOLIA_API_KEY = os.getenv('ALGOLIA_API_KEY')
+ALGOLIA_INDEX_PREFIX = os.getenv('ALGOLIA_INDEX_PREFIX')
+
+# ALGOLIA_APPLICATION_ID = os.environ.get('ALGOLIA_APPLICATION_ID')
+# ALGOLIA_API_KEY = os.environ.get('ALGOLIA_API_KEY')
+# ALGOLIA_INDEX_PREFIX = os.environ.get('ALGOLIA_INDEX_PREFIX')
+
+# ALGOLIA = {
+#     'APPLICATION_ID': ALGOLIA_APPLICATION_ID,
+#     'API_KEY': ALGOLIA_API_KEY,
+#     'INDEX_PREFIX': ALGOLIA_INDEX_PREFIX
+# }
