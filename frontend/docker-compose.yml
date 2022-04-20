@@ -10,5 +10,3 @@ services:
     image: starwars:react
     container_name: starwars_react_container
     command: npm start
-
-s
