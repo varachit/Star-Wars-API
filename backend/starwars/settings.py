@@ -54,6 +54,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'debug_toolbar',
     'corsheaders',
     'rest_framework',
     'rest_framework.authtoken',
@@ -70,6 +71,7 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'whitenoise.middleware.WhiteNoiseMiddleware',
+    'debug_toolbar.middleware.DebugToolbarMiddleware',
 ]
 
 ROOT_URLCONF = 'starwars.urls'
@@ -78,6 +80,10 @@ CORS_ALLOWED_ORIGINS = [
     'https://starwars-varachit.vercel.app',
     'http://localhost:3000',
     'http://127.0.0.1:3000'
+]
+
+INTERNAL_IPS = [
+    "127.0.0.1",
 ]
 
 TEMPLATES = [
@@ -173,7 +179,7 @@ USE_TZ = True
 
 
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
-STATIC_URL = '/static/'
+STATIC_URL = 'static/'
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'  # Whitenoise
 
 # Default primary key field type

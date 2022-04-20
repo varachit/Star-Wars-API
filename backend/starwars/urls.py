@@ -21,5 +21,6 @@ from .views import starwars_home
 urlpatterns = [
     path('', starwars_home),
     path('admin/', admin.site.urls),
-    path('api/v1/', include('api.urls'))
+    path('api/v1/', include('api.urls')),
+    path('__debug__/', include('debug_toolbar.urls'))
 ]
