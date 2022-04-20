@@ -28,10 +28,10 @@ class MostPilotedStarshipListView(generics.ListAPIView):
     permission_classes = [permissions.IsAuthenticatedOrReadOnly]
 
     def get_queryset(self):
-        raw_params = self.request.query_params.get('planet').replace(' ', '')  # Getting parameters
+        raw_params = self.request.query_params.get('planet')  # Getting parameters
         if raw_params is not None:  # If parameters is not null or empty
-            # Convert parameters to list, String: Sullust, Corellia, Kashyyyk -> [Sullust, Corellia, Kashyyyk]
-            planets_params = raw_params.split(',')
+            # Convert parameters to list, String: Sullust, Corellia, Kashyyyk -> ['Sullust', 'Corellia', 'Kashyyyk']
+            planets_params = [each_param.strip() for each_param in raw_params.split(',')]
             planets_q = Q()
             for each_planet_param in planets_params:
                 planets_q = planets_q | Q(name__iexact=each_planet_param)
@@ -40,6 +40,7 @@ class MostPilotedStarshipListView(generics.ListAPIView):
             if settings.REDIS_CACHING:
                 key_name = f'mostPilotedStarship_{raw_params}'  # Cache Key Name
                 value = redis_instance.get(key_name)  # Attempt to get from cache server
+
                 if value:  # If true, cache is exists
                     if settings.DEBUG:
                         print('Serving cache')
@@ -157,18 +158,18 @@ class StarshipListSearchView(generics.ListAPIView):
                     if settings.DEBUG:
                         print('Serving cache')
                     cache_params = value.decode('utf8').split(' ')
-                    return self.queryset.filter(id__in=cache_params).order_by("name")
+                    return self.queryset.filter(id__in=cache_params).order_by('name')
                 else:  # No cache found
                     if settings.DEBUG:
                         print('Serving from database')
-                    results = qs.search(q, user=user).order_by("name")
+                    results = qs.search(q, user=user).order_by('name')
                     limited_results = results[:10]
                     cache_value = ' '.join([str(each_result) for each_result
                                             in limited_results.values_list('id', flat=True)])
                     redis_instance.set(key_name, cache_value, int(settings.REDIS_TTL))
                     return results
             else:  # If caching is disabled
-                results = qs.search(q, user=user).order_by("name")
+                results = qs.search(q, user=user).order_by('name')
                 return results[:10]
         return Starship.objects.none()
 
@@ -250,18 +251,18 @@ class PlanetListSearchView(generics.ListAPIView):
                     if settings.DEBUG:
                         print('Serving cache')
                     cache_params = value.decode('utf8').split(' ')
-                    return self.queryset.filter(id__in=cache_params).order_by("name")
+                    return self.queryset.filter(id__in=cache_params).order_by('name')
                 else:  # No cache found
                     if settings.DEBUG:
                         print('Serving from database')
-                    results = qs.search(q, user=user).order_by("name")
+                    results = qs.search(q, user=user).order_by('name')
                     limited_results = results[:10]
                     cache_value = ' '.join([str(each_result) for each_result
                                             in limited_results.values_list('id', flat=True)])
                     redis_instance.set(key_name, cache_value, int(settings.REDIS_TTL))
                     return results
             else:  # If caching is disabled
-                results = qs.search(q, user=user).order_by("name")
+                results = qs.search(q, user=user).order_by('name')
                 return results[:10]
         return Planet.objects.none()
 
@@ -343,17 +344,17 @@ class PersonListSearchView(generics.ListAPIView):
                     if settings.DEBUG:
                         print('Serving cache')
                     cache_params = value.decode('utf8').split(' ')
-                    return self.queryset.filter(id__in=cache_params).order_by("name")
+                    return self.queryset.filter(id__in=cache_params).order_by('name')
                 else:  # No cache found
                     if settings.DEBUG:
                         print('Serving from database')
-                    results = qs.search(q, user=user).order_by("name")
+                    results = qs.search(q, user=user).order_by('name')
                     limited_results = results[:10]
                     cache_value = ' '.join([str(each_result) for each_result
                                             in limited_results.values_list('id', flat=True)])
                     redis_instance.set(key_name, cache_value, int(settings.REDIS_TTL))
                     return results
             else:  # If caching is disabled
-                results = qs.search(q, user=user).order_by("name")
+                results = qs.search(q, user=user).order_by('name')
                 return results[:10]
         return Person.objects.none()
