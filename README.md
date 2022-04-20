@@ -66,7 +66,7 @@ Can't wait to meet with you again soon. Thank you for visiting and have a great 
 - Python 3.10.1
 - Django 4.0.3
 - djangorestframework 3.13.1
-- Redis 5.2.0
+- django-redis 5.2.0
 
 ## Screenshot
 ### Frontend
