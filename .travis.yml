@@ -1,0 +1,29 @@
+jobs:
+  include:
+    - language: python
+      python:
+        - "3.10"
+        - "3.10.2"
+      dist: focal
+      before_script:
+        - cd backend/
+      script:
+        - echo "$TRAVIS_EVENT_TYPE"
+        - echo "$DIST"
+        - lsb_release -a
+        - python --version
+        - python manage.py test
+
+    - language: node_js
+      node_js:
+        - "stable"
+      cache:
+        directories:
+          - frontend/node_modules
+      before_script:
+        - cd frontend/
+      script:
+        - npm test
+        - npm run build
+      on:
+        branch: master
