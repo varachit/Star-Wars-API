@@ -19,9 +19,9 @@ jobs:
     - language: node_js
       node_js:
         - "16.14.2"
-      cache: npm
-      before_install:
-        - "npm config set spin false"
+      cache:
+        directories:
+          - frontend/node_modules
       before_script:
         - cd frontend/
       install:
