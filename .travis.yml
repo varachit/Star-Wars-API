@@ -22,9 +22,8 @@ jobs:
       cache:
         directories:
           - frontend/node_modules
-      before_script:
-        - cd frontend/
       install:
+        - cd frontend/
         - npm install
       script:
         - npm test
