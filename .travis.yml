@@ -7,8 +7,8 @@ jobs:
       dist: focal
       before_script:
         - cd backend/
-      script:
         - pip install -r requirements.txt
+      script:
         - echo "$TRAVIS_EVENT_TYPE"
         - echo "$DIST"
         - lsb_release -a
@@ -21,10 +21,12 @@ jobs:
       cache:
         directories:
           - frontend/node_modules
+      before_install:
+        - "npm config set spin false"
       before_script:
         - cd frontend/
-      script:
         - npm install
+      script:
         - npm test
         - npm run build
       on:
