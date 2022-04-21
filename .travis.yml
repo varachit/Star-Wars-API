@@ -5,9 +5,8 @@ jobs:
         - "3.10"
         - "3.10.2"
       dist: focal
-      before_script:
-        - cd backend/
       install:
+        - cd backend/
         - pip install -r requirements.txt
       script:
         - echo "$TRAVIS_EVENT_TYPE"
@@ -26,5 +25,4 @@ jobs:
         - cd frontend/
         - npm install
       script:
-        - npm test
         - npm run build
