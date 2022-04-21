@@ -1,0 +1,19 @@
+language: python
+
+dist: focal
+
+python:
+  - "3.10"
+  - "3.10.2"
+env:
+  - DEBUG='False'
+  - REDIS_CACHING='False'
+install:
+  - pip install -r requirements.txt
+
+script:
+  - echo "$TRAVIS_EVENT_TYPE"
+  - echo "$DIST"
+  - lsb_release -a
+  - python --version
+  - python manage.py test
