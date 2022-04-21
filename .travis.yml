@@ -8,6 +8,7 @@ jobs:
       before_script:
         - cd backend/
       script:
+        - pip install -r requirements.txt
         - echo "$TRAVIS_EVENT_TYPE"
         - echo "$DIST"
         - lsb_release -a
@@ -23,6 +24,7 @@ jobs:
       before_script:
         - cd frontend/
       script:
+        - npm install
         - npm test
         - npm run build
       on:
