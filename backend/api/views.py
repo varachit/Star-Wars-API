@@ -29,10 +29,11 @@ class MostPilotedStarshipListView(generics.ListAPIView):
 
     def get_queryset(self):
         raw_params = self.request.query_params.get('planet')  # Getting parameters
+
         if raw_params is not None:  # If parameters is not null or empty
             # Convert parameters to list, String: Sullust, Corellia, Kashyyyk -> ['Sullust', 'Corellia', 'Kashyyyk']
             planets_params = [each_param.strip() for each_param in raw_params.split(',')]
-            planets_q = Q()
+            planets_q = Q()  # Q Object - encapsulated SQL expression
             for each_planet_param in planets_params:
                 planets_q = planets_q | Q(name__iexact=each_planet_param)
 
@@ -50,35 +51,38 @@ class MostPilotedStarshipListView(generics.ListAPIView):
                     if settings.DEBUG:
                         print('Serving from database')
 
-                    planet_qs = self.planet_queryset.filter(planets_q)  # Filter planets with params
-                    resident_params = planet_qs.values_list('residents', flat=True)  # Get residents' ID from filtered
-                    resident_qs = self.resident_queryset.filter(id__in=resident_params)  # Filter residents
-                    starship_list = resident_qs.values_list('starships', flat=True)  # Get starships from residents
-                    # Some resident does not have their own starship, So, None type exists
-                    # Convert Starship ID from the filtered starships_list to Integer List using List Comprehension
-                    starships = [int(each_starship) for each_starship in starship_list if each_starship is not None]
-                    # Multimode from Statistics Package to find maximum occurrence or multiple mode if exists
-                    starship_params = multimode(starships)
-                    # After getting Starship ID that have the most occurrence or is the most piloted ship(s)
-                    # Filter it from all the starship. So, only the most piloted starship(s) is/are returned
-                    starships_qs = self.starship_queryset.filter(id__in=starship_params)
+                    result, starship_params = self.find_most_piloted_starship(planets_q, True)
 
                     # Caching, convert the starship results to String with whitespace delimiter.
                     # Sullust, Corellia, Kashyyyk -> "10"
                     # Corellia -> "10 17 12"
                     cache_value = ' '.join([str(starship) for starship in starship_params])
                     redis_instance.set(key_name, cache_value, int(settings.REDIS_TTL))
-                    return starships_qs
+                    return result
             else:  # If caching is disabled
-                planet_qs = self.planet_queryset.filter(planets_q)
-                resident_params = planet_qs.values_list('residents', flat=True)
-                resident_qs = self.resident_queryset.filter(id__in=resident_params)
-                starship_list = resident_qs.values_list('starships', flat=True)
-                starships = [int(each_starship) for each_starship in starship_list if each_starship is not None]
-                starship_params = multimode(starships)
-                starships_qs = self.starship_queryset.filter(id__in=starship_params)
-                return starships_qs
+                return self.find_most_piloted_starship(planets_q) or Starship.objects.none()
         return Starship.objects.none()  # If parameters is empty, return the empty queryset
+
+    def find_most_piloted_starship(self, planet_query_params, caching_mode=False):
+        planet_qs = self.planet_queryset.filter(planet_query_params)  # Filter planets with params
+        resident_params = planet_qs.values_list('residents__id', flat=True)  # Get filtered residents' ID
+        resident_qs = self.resident_queryset.filter(id__in=resident_params)  # Filter residents
+        starship_list = resident_qs.values_list('starships__id', flat=True)  # Get starships from residents
+
+        # Some resident does not have their own starship, So, None type exists
+        # Convert Starship ID from the filtered starships_list to Integer List using List Comprehension
+        starships = [int(each_starship) for each_starship in starship_list if each_starship is not None]
+
+        # Multimode from Statistics Package to find maximum occurrence or multiple mode if exists
+        starship_params = multimode(starships)
+
+        # After getting Starship ID that have the most occurrence or is the most piloted ship(s)
+        # Filter it from all the starship. So, only the most piloted starship(s) is/are returned
+        starships_qs = self.starship_queryset.filter(id__in=starship_params)
+
+        if caching_mode:  # If caching mode is on, return both result and params for caching purposes
+            return starships_qs, starship_params
+        return starships_qs
 
 
 # Starship View
