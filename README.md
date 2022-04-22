@@ -76,7 +76,9 @@ Can't wait to meet with you again soon. Thank you for visiting and have a great 
 ![alt text](https://i.imgur.com/XyaXeXT.png)
 
 ### Design
-![alt text](https://i.imgur.com/iXEgG7y.png)
+![alt text](https://i.imgur.com/ftTY5Jj.png)
+![alt text](https://i.imgur.com/Xf30LHU.png)
+![alt text](https://i.imgur.com/PBTC11Q.png)
 
 ### Database Query
 ```
@@ -97,11 +99,14 @@ LEFT OUTER JOIN api_person_homeworld
     ON api_person.id = api_person_homeworld.person_id
 LEFT OUTER JOIN api_planet
     ON api_person_homeworld.planet_id = api_planet.id
-	
-WHERE api_planet.name = "Sullust" 
-    OR api_planet.name = "Corellia"
-    OR api_planet.name = "Kashyyyk"
-ORDER BY api_planet.name, api_person.name, api_starship.id
+
+WHERE api_planet.name IN ('Sullust', 'Corellia', 'Kashyyyk') 
+      
+-- WHERE api_planet.name = "Sullust" 
+--    OR api_planet.name = "Corellia"
+--    OR api_planet.name = "Kashyyyk"
+    
+ORDER BY api_planet.name, api_person.name, api_starship.id;
 ```
 
 **Action:** `Get the all information on starship and residents in the target planets`\
@@ -134,12 +139,14 @@ LEFT OUTER JOIN api_person_homeworld
 LEFT OUTER JOIN api_planet
     ON api_person_homeworld.planet_id = api_planet.id
 	
-WHERE api_planet.name = "Sullust" 
-    OR api_planet.name = "Corellia"
-    OR api_planet.name = "Kashyyyk"
+WHERE api_planet.name IN ('Sullust', 'Corellia', 'Kashyyyk') 
+	
+-- WHERE api_planet.name = "Sullust" 
+--     OR api_planet.name = "Corellia"
+--     OR api_planet.name = "Kashyyyk"
 
 GROUP BY api_starship.id
-ORDER BY starship_count DESC
+ORDER BY starship_count DESC;
 ```
 
 **Action:** `Get the starship information owned by the residents in the target planets`\
