@@ -1,12 +1,12 @@
 version: "3.8"
 services:
-  starwars:
+  starwars-frontend:
     build:
       context: .
     volumes:
-      - .:/frontend
+      - .:/frontend/node_modules
     ports:
       - 3000:3000
-    image: starwars:react
-    container_name: starwars_react_container
+    image: starwars:frontend
+    container_name: starwars-frontend
     command: npm start
