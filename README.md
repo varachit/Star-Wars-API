@@ -201,11 +201,11 @@ ORDER BY starship_count DESC;
   
 - Dockerizing
   ```
-  $ docker build --tag starwars-react .
-  $ docker run starwars-react
-  $ docker run --publish 3000:3000 starwars-react
+  $ docker build --tag starwars-frontend .
+  $ docker run starwars-frontend
+  $ docker run --publish 3000:3000 starwars-frontend
   $ docker-compose build .
-  $ docker-compose run starwar
+  $ docker-compose run starwars-frontend
   ```
 
 ### **Backend**
@@ -258,6 +258,14 @@ ORDER BY starship_count DESC;
         ```
         4. Configure the backend project environment whether on .env or on machine environment. Refer Backend Project Environment.
         
+    - Testing
+      - Run frontend web-application and backend at the same time
+      - Monitor the Redis Server or Caching Server using the following command on Redis CLI
+      ```
+      $ monitor
+      ```
+      - All activities will be logged there
+
 
 - Algolia\
   [Algolia](https://www.algolia.com/) is an AI-powered search, and it is really fast. Most search queries take from 1 to 20 milliseconds to process.
@@ -266,16 +274,7 @@ ORDER BY starship_count DESC;
   When necessary, turn on in the configuration, and it can be used immediately. On the production, this feature would be
   enabled to connect with the Algolia service where the data in the database are synchronized with it. 
 
-
-- Testing
-  - Run frontend web-application and backend at the same time
-  - Monitor the Redis Server or Caching Server using the following command on Redis CLI
-  ```
-  $ monitor
-  ```
-  - All activities will be logged there
-      
-
+  
 - Backend Project Environment
   ```
   SECRET_KEY='KEY' # Disabled and using django default 
