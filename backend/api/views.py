@@ -39,7 +39,7 @@ class MostPilotedStarshipListView(generics.ListAPIView):
 
             # If caching is enabled
             if settings.REDIS_CACHING:
-                key_name = f'mostPilotedStarship_{raw_params}'  # Cache Key Name
+                key_name = 'mostPilotedStarship_' + raw_params.replace(' ', '')  # Cache Key Name
                 value = redis_instance.get(key_name)  # Attempt to get from cache server
 
                 if value:  # If true, cache is exists
