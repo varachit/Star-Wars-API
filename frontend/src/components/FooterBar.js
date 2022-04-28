@@ -14,7 +14,7 @@ function DeathstarLogo() {
                     </a>
 
                     <a className="btn btn-link btn-floating btn-lg text-dark m-1" target="_blank" rel="noreferrer"
-                        href="https://github.com/z3r0k0r3" role="button" data-mdb-ripple-color="dark">
+                        href="https://github.com/varachit/" role="button" data-mdb-ripple-color="dark">
                         <i className="fab fa-github"></i>
                     </a>
                 </section>

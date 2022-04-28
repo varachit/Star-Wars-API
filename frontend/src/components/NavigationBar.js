@@ -20,7 +20,7 @@ function NavigationBar() {
                     <Navbar.Collapse id="basic-navbar-nav" >
                         <Nav className="me-auto">
                             <Nav.Link href="/">Home</Nav.Link>
-                            <Nav.Link href="https://github.com/z3r0k0r3/Star-Wars-API/" target="_blank">Documentation</Nav.Link>
+                            <Nav.Link href="https://github.com/varachit/Star-Wars-API/" target="_blank">Documentation</Nav.Link>
                             <Nav.Link href={API_ADMINISTRATION_SITE}>Django Administration</Nav.Link>
                             <Nav.Link onClick={handleShow}>About</Nav.Link>
                         </Nav>
@@ -53,7 +53,7 @@ function NavigationBar() {
                                     <h6>
                                         <FontAwesomeIcon icon="fa-brands fa-github" />{' '}
                                         <a style={{ textDecoration: "none", color: "#000000" }}
-                                           href="https://github.com/z3r0k0r3/"
+                                           href="https://github.com/varachit/"
                                            target="_blank" rel="noreferrer">Varachit W.</a>
                                     </h6>
                                     <h6>
