@@ -1,5 +1,5 @@
 # Star Wars API
-[![Build Status](https://app.travis-ci.com/z3r0k0r3/Star-Wars-API.svg?token=4NGUqs3xY87p8AbzrFZq&branch=master)](https://app.travis-ci.com/z3r0k0r3/Star-Wars-API)
+[![Build Status](https://app.travis-ci.com/varachit/Star-Wars-API.svg?token=4NGUqs3xY87p8AbzrFZq&branch=master)](https://app.travis-ci.com/varachit/Star-Wars-API)
 
 
 Star Wars API, serves people, planet and starship information within its universe. The application utilised SQLite, 
