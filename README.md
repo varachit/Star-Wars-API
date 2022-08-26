@@ -50,12 +50,6 @@ our current location in Thailand. Building process for both production went well
 - Total Blocking Time (TBT): 23ms
 - Time To First Byte (TTFB): 76ms
 
-## Note
-Greeting Mr. Morrison, I'm Varachit Wirunpat. This is my first REST API Django Project.
-The reason for choosing Django is that I would like to try something new and challenging 
-as to display my fast-learning skill as well as to adapt the existing knowledge with the new framework and tech stack. 
-Can't wait to meet with you again soon. Thank you for visiting and have a great day!
-
 ## Technology
 ### Frontend
 - Node 16.14.2
